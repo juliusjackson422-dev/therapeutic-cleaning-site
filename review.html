@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F2F1EC">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'><rect width='34' height='34' rx='7' fill='%23F2F1EC'/><path d='M17 27V8.5M17 14.4c-1.9-.7-3.3-2-4.1-3.9M17 18.6c1.9-.7 3.3-2 4.1-3.9' stroke='%231F4034' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>">
+<title>Leave a Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Tell us how your last clean went.">
+
+<!--
+  ===========================================================================
+  REVIEW REQUEST PAGE — Therapeutic Cleaning Co.
+  ===========================================================================
+  A single-purpose page to TEXT to an existing customer after a clean.
+  Short link, one tap, done on a phone in about thirty seconds.
+
+  [CONFIRM] BEFORE SENDING THIS TO ANYONE — set the two links in the script
+  at the bottom:
+      GOOGLE_REVIEW_URL   her Google Business Profile "write a review" link
+      CONTACT_PHONE       the number private feedback goes to
+
+  How to get the Google link:
+    Google Business Profile → your business → Ask for reviews → copy link.
+    It looks like  https://g.page/r/XXXXXXXXXXXXXX/review
+    If she has no Google Business Profile yet, that is step one and nothing
+    else here matters until it exists. It is free and takes about 10 minutes.
+
+  DELIBERATELY NOT A "REVIEW FILTER". Both choices below are shown to
+  everyone, equally, at the same size. Sending happy customers to Google and
+  routing unhappy ones somewhere private is called review gating — Google
+  prohibits it and can remove a profile's reviews for doing it. This page
+  asks everybody the same question and lets them pick.
+  ===========================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..500;1,6..72,200..400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+
+<style>
+/* ===========================================================================
+   One short column, thumb-reachable. Same palette as the main site.
+   =========================================================================== */
+:root{
+  --paper:#F2F1EC; --paper-2:#E9E8E1; --surface:#FFFFFF;
+  --ink:#14201B; --ink-2:#4F5F57; --line:#DAD9D1;
+  --moss:#1F4034; --sage:#7E9A89; --steam:#C9DAD4;
+  --amber:#D9A05B; --amber-hi:#EBB573; --on-amber:#14201B;
+  --display:"Newsreader",ui-serif,Georgia,serif;
+  --sans:"Hanken Grotesk",ui-sans-serif,system-ui,"Segoe UI",Arial,sans-serif;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1714; --paper-2:#131F1A; --surface:#16231E;
+    --ink:#E9EBE3; --ink-2:#9FB2A8; --line:#27362F;
+    --moss:#09110E; --steam:#1F312B;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1714; --paper-2:#131F1A; --surface:#16231E;
+  --ink:#E9EBE3; --ink-2:#9FB2A8; --line:#27362F;
+  --moss:#09110E; --steam:#1F312B;
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{height:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:100%;
+  padding:40px max(20px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))
+}
+.card{width:100%;max-width:27rem;display:flex;flex-direction:column;gap:22px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-tx{display:flex;flex-direction:column;line-height:1.08}
+.brand-n{font-family:var(--display);font-size:1.06rem;font-weight:400;letter-spacing:-.01em}
+.brand-s{font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)}
+
+h1{
+  margin:0;font-family:var(--display);font-weight:300;letter-spacing:-.02em;
+  font-size:clamp(1.9rem,8vw,2.5rem);line-height:1.12;text-wrap:balance
+}
+h1 em{font-style:italic;color:var(--sage)}
+p{margin:0;color:var(--ink-2);font-size:1rem;line-height:1.6}
+p strong{color:var(--ink);font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:11px;margin-top:2px}
+.opt{
+  display:flex;align-items:center;gap:14px;padding:18px 20px;border-radius:14px;
+  text-decoration:none;color:var(--ink);background:var(--surface);
+  border:1.5px solid var(--line);
+  transition:transform .16s var(--ease-out),border-color .2s,box-shadow .25s
+}
+.opt:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(20,32,27,.1)}
+.opt .ic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;flex:none}
+.opt .tx{min-width:0}
+.opt .tx b{display:block;font-weight:600;font-size:1.02rem;line-height:1.3}
+.opt .tx span{display:block;font-size:.86rem;color:var(--ink-2);line-height:1.4;margin-top:2px}
+.opt .ar{margin-left:auto;color:var(--ink-2);flex:none;transition:transform .3s var(--ease-out)}
+.opt:hover .ar{transform:translateX(4px)}
+
+.opt.pub{background:var(--amber);border-color:var(--amber);color:var(--on-amber)}
+.opt.pub .ic{background:rgba(20,32,27,.14)}
+.opt.pub .tx span,.opt.pub .ar{color:rgba(20,32,27,.72)}
+.opt.pub:hover{background:var(--amber-hi);border-color:var(--amber-hi);box-shadow:0 12px 30px rgba(217,160,91,.34)}
+.opt.priv .ic{background:var(--steam);color:var(--moss)}
+
+.fine{font-size:.84rem;color:var(--ink-2);text-align:center;line-height:1.5}
+.rule{height:1px;background:var(--line);border:0;margin:2px 0}
+.warn{
+  display:none;gap:10px;padding:13px 15px;border-radius:11px;
+  background:var(--steam);color:var(--moss);font-size:.86rem;line-height:1.45
+}
+.warn.on{display:grid;grid-template-columns:auto 1fr}
+.warn svg{margin-top:3px;flex:none}
+.warn code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92em}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+
+<main class="card">
+  <div class="brand">
+    <svg width="32" height="32" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+      <circle cx="17" cy="17" r="16" stroke="currentColor" stroke-opacity=".22" stroke-width="1.2"/>
+      <path d="M17 7c5.2 2.4 7.6 6 7.6 10.1 0 4.3-3.4 7.7-7.6 7.7s-7.6-3.4-7.6-7.7C9.4 13 11.8 9.4 17 7Z" fill="var(--sage)" fill-opacity=".28"/>
+      <path d="M17 26V9.5M17 15.4c-1.9-.7-3.3-2-4.1-3.9M17 19.6c1.9-.7 3.3-2 4.1-3.9" stroke="var(--moss)" stroke-width="1.3" stroke-linecap="round"/>
+    </svg>
+    <span class="brand-tx">
+      <span class="brand-n">Therapeutic Cleaning</span>
+      <span class="brand-s">Thank you</span>
+    </span>
+  </div>
+
+  <h1>How was your <em>last clean?</em></h1>
+
+  <p>This is a small business — a handful of homes, looked after properly.
+     <strong>A couple of lines from you does more than any advertising could.</strong>
+     It takes about thirty seconds.</p>
+
+  <div class="opts">
+    <a class="opt pub" id="google" href="#" target="_blank" rel="noopener noreferrer">
+      <span class="ic" aria-hidden="true">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M12 2.6 14.9 9l6.5.6-4.9 4.5 1.4 6.3L12 17.1 6.1 20.4l1.4-6.3L2.6 9.6 9.1 9 12 2.6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="tx"><b>Leave a public review</b><span>On Google — helps new clients find us</span></span>
+      <svg class="ar" width="15" height="13" viewBox="0 0 13 11" fill="none" aria-hidden="true"><path d="M1 5.5h10M7.3 1.5 11.3 5.5 7.3 9.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <a class="opt priv" id="private" href="#">
+      <span class="ic" aria-hidden="true">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M4 5.5h16v10.2a1.3 1.3 0 0 1-1.3 1.3H8.6L4 20.6V5.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="tx"><b>Tell us directly instead</b><span>Anything that wasn't right — we'd rather hear it</span></span>
+      <svg class="ar" width="15" height="13" viewBox="0 0 13 11" fill="none" aria-hidden="true"><path d="M1 5.5h10M7.3 1.5 11.3 5.5 7.3 9.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <div class="warn" id="warn">
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.9 15 14H1L8 1.9Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 6.2v3.1M8 11.3v.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div><b>Not set up yet.</b> Open this file and fill in <code>GOOGLE_REVIEW_URL</code>
+      and <code>CONTACT_PHONE</code> before sending the link to anyone.</div>
+  </div>
+
+  <hr class="rule">
+  <p class="fine">Either one is genuinely useful. Pick whichever fits — there's no wrong answer,
+    and nobody minds which you choose.</p>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ======================= FILL THESE IN ======================= */
+  var GOOGLE_REVIEW_URL = "";          /* e.g. "https://g.page/r/XXXXXXXXXXXXXX/review" */
+  var CONTACT_PHONE     = "";          /* e.g. "+15035550142" — digits, with country code */
+  /* ============================================================= */
+
+  var g = document.getElementById("google");
+  var p = document.getElementById("private");
+  var warn = document.getElementById("warn");
+  var missing = false;
+
+  if (GOOGLE_REVIEW_URL) {
+    g.href = GOOGLE_REVIEW_URL;
+  } else {
+    missing = true;
+    g.setAttribute("aria-disabled", "true");
+    g.addEventListener("click", function (e) { e.preventDefault(); warn.classList.add("on"); });
+  }
+
+  if (CONTACT_PHONE) {
+    p.href = "sms:" + CONTACT_PHONE;
+  } else {
+    missing = true;
+    p.setAttribute("aria-disabled", "true");
+    p.addEventListener("click", function (e) { e.preventDefault(); warn.classList.add("on"); });
+  }
+
+  // Shown immediately so the page never looks finished when it isn't.
+  if (missing) warn.classList.add("on");
+})();
+</script>
+</body>
+</html>

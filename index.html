@@ -1,0 +1,1922 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F2F1EC">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'><rect width='34' height='34' rx='7' fill='%23F2F1EC'/><path d='M17 27V8.5M17 14.4c-1.9-.7-3.3-2-4.1-3.9M17 18.6c1.9-.7 3.3-2 4.1-3.9' stroke='%231F4034' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>">
+<title>Therapeutic Cleaning Co.</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Recurring house cleaning and home maintenance. No rotating roster, your checklist, your schedule. Build your plan and request a free estimate.">
+<!-- [CONFIRM] Pre-launch: keeps placeholder copy and the fictional phone number
+     out of search results. Remove this line when the real details are in. -->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- [CONFIRM] Social share card. og:url and og:image must be ABSOLUTE and must
+     match the domain this is finally served from. therapeuticcleaning.co is a
+     placeholder — there is no registered domain yet. Update these four lines,
+     the canonical below, sitemap.xml and robots.txt together. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Therapeutic Cleaning Co.">
+<meta property="og:title" content="Come home to a house that feels lighter.">
+<meta property="og:description" content="Recurring house cleaning and home maintenance. A checklist you set, no rotating roster, no contract.">
+<meta property="og:url" content="https://therapeuticcleaning.co/">
+<meta property="og:image" content="https://therapeuticcleaning.co/img/hero-living.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1500">
+<meta property="og:image:alt" content="Sunlight falling across the hardwood floor of a tidy, high-ceilinged living room">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Come home to a house that feels lighter.">
+<meta name="twitter:description" content="Recurring house cleaning and home maintenance. A checklist you set, no contract.">
+<meta name="twitter:image" content="https://therapeuticcleaning.co/img/hero-living.jpg">
+<link rel="canonical" href="https://therapeuticcleaning.co/">
+
+<!--
+  ============================================================================
+  THERAPEUTIC CLEANING CO. — single-file site
+  ============================================================================
+  BEFORE LAUNCH — every item marked [CONFIRM] below is a placeholder.
+  Search the file for "[CONFIRM]" to find them all.
+
+    [CONFIRM] Business name, logo mark
+    [CONFIRM] Phone  (503) 555-0142   — 555-01xx is a reserved fictional range
+    [CONFIRM] Email  hello@therapeuticcleaning.co
+    [CONFIRM] City / service areas — the site no longer names a place anywhere.
+              Every invented Portland reference and neighbourhood list has been
+              removed, so nothing on the page is factually wrong about location.
+              To localise it, there are only four spots:
+                1. hero eyebrow  — "House cleaning & home maintenance"
+                2. FAQ "Which areas do you cover?"
+                3. footer service-area list
+                4. JSON-LD at the bottom — add "areaServed"
+              Also removed: a fabricated "Est. 2019" that was never verified.
+    [CONFIRM] Opening hours
+    [CONFIRM] The four assurance-strip statements
+    [CONFIRM] FAQ answers
+    [CONFIRM] Reviews — intentionally left as empty frames. Never publish
+              invented testimonials. Drop real Google reviews in.
+    [CONFIRM] Photography — licensed Unsplash stock stands in for the
+              company's own work. Swap for real job photos when available.
+    [CONFIRM] JSON-LD at the bottom: no address/geo until verified.
+
+  FORM: set FORM_ENDPOINT in the script near the bottom to a real endpoint
+  (Formspree, Netlify Forms, your own handler). Until it is set the form
+  validates, assembles the request and tells the visitor plainly that it is
+  not connected yet — it never pretends a message was sent.
+  ============================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..500;1,6..72,200..400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+
+<style>
+/* ===========================================================================
+   LAYOUT CONCEPT — an editorial column: full-bleed eucalyptus bands alternate
+   with mineral-oat reading sections; one amber action colour carries every CTA.
+   =========================================================================== */
+:root{
+  /* colour */
+  --paper:#F2F1EC; --paper-2:#E9E8E1; --surface:#FFFFFF;
+  --ink:#14201B; --ink-2:#4F5F57; --line:#DAD9D1;
+  --moss:#1F4034; --moss-2:#163029;
+  --on-moss:#EEF0E9; --on-moss-2:#A6BCAD;
+  --sage:#7E9A89; --steam:#C9DAD4;
+  --amber:#D9A05B; --amber-hi:#EBB573; --on-amber:#14201B;
+  --pill-bg:#C9DAD4; --pill-fg:#1A3A2F;
+  --shadow-sm:0 1px 2px rgba(20,32,27,.06),0 4px 14px rgba(20,32,27,.05);
+  --shadow-md:0 2px 6px rgba(20,32,27,.07),0 18px 40px rgba(20,32,27,.10);
+  --shadow-lg:0 30px 70px rgba(20,32,27,.18);
+  --glass:rgba(242,241,236,.86);
+  /* type */
+  --display:"Newsreader",ui-serif,Georgia,"Times New Roman",serif;
+  --sans:"Hanken Grotesk",ui-sans-serif,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  /* rhythm */
+  --gut-l:max(20px,env(safe-area-inset-left,0px));
+  --gut-r:max(20px,env(safe-area-inset-right,0px));
+  --band:clamp(64px,8vw,116px);
+  --r:14px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1714; --paper-2:#131F1A; --surface:#16231E;
+    --ink:#E9EBE3; --ink-2:#9FB2A8; --line:#27362F;
+    --moss:#09110E; --moss-2:#060B09;
+    --on-moss:#E9EBE3; --on-moss-2:#9FB2A8;
+    --sage:#7E9A89; --steam:#1F312B;
+    --pill-bg:#22382F; --pill-fg:#C3D7CE;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.5),0 4px 14px rgba(0,0,0,.35);
+    --shadow-md:0 2px 6px rgba(0,0,0,.5),0 18px 40px rgba(0,0,0,.45);
+    --shadow-lg:0 30px 70px rgba(0,0,0,.6);
+    --glass:rgba(14,23,20,.86);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1714; --paper-2:#131F1A; --surface:#16231E;
+  --ink:#E9EBE3; --ink-2:#9FB2A8; --line:#27362F;
+  --moss:#09110E; --moss-2:#060B09;
+  --on-moss:#E9EBE3; --on-moss-2:#9FB2A8;
+  --sage:#7E9A89; --steam:#1F312B;
+  --pill-bg:#22382F; --pill-fg:#C3D7CE;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.5),0 4px 14px rgba(0,0,0,.35);
+  --shadow-md:0 2px 6px rgba(0,0,0,.5),0 18px 40px rgba(0,0,0,.45);
+  --shadow-lg:0 30px 70px rgba(0,0,0,.6);
+  --glass:rgba(14,23,20,.86);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-size:clamp(16px,1.02vw,17px); line-height:1.6;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+/* paints the strip above a sticky header on phones */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--glass);backdrop-filter:blur(14px)}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:300;letter-spacing:-.015em;text-wrap:balance;line-height:1.08}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--amber);outline-offset:3px;border-radius:4px}
+::selection{background:var(--amber);color:var(--on-amber)}
+
+.wrap{width:100%;max-width:1220px;margin-inline:auto;padding-left:var(--gut-l);padding-right:var(--gut-r)}
+.band{padding-block:var(--band)}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ---------- shared type ---------- */
+.eyebrow{
+  font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:.7em;flex-wrap:wrap
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--amber);flex:none}
+.on-dark .eyebrow{color:var(--on-moss-2)}
+.h-xl{font-size:clamp(2.6rem,6.4vw,5.1rem)}
+.h-lg{font-size:clamp(2.1rem,4.2vw,3.5rem)}
+.h-md{font-size:clamp(1.55rem,2.4vw,2.1rem)}
+.lede{font-size:clamp(1.04rem,1.35vw,1.19rem);color:var(--ink-2);max-width:56ch;line-height:1.62}
+.on-dark .lede{color:var(--on-moss-2)}
+.sec-head{display:flex;flex-direction:column;gap:18px;max-width:62ch}
+
+/* ---------- buttons ---------- */
+.btn{
+  --bg:var(--amber); --fg:var(--on-amber);
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.6em;
+  padding:15px 26px;border:0;border-radius:999px;background:var(--bg);color:var(--fg);
+  font-weight:600;font-size:.95rem;letter-spacing:.005em;text-decoration:none;cursor:pointer;
+  transition:transform .18s var(--ease),box-shadow .25s var(--ease),background-color .25s var(--ease);
+  box-shadow:0 1px 2px rgba(20,32,27,.12),0 8px 22px rgba(217,160,91,.26);
+  overflow:hidden;isolation:isolate;white-space:nowrap
+}
+.btn::after{
+  content:"";position:absolute;inset:0;z-index:-1;background:var(--amber-hi);
+  transform:translateY(102%);transition:transform .38s var(--ease-out)
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(20,32,27,.14),0 14px 30px rgba(217,160,91,.34)}
+.btn:hover::after{transform:translateY(0)}
+.btn:active{transform:translateY(0) scale(.985)}
+.btn .ar{transition:transform .32s var(--ease-out)}
+.btn:hover .ar{transform:translateX(4px)}
+.btn-ghost{
+  --bg:transparent;--fg:var(--ink);
+  border:1.5px solid var(--line);box-shadow:none;font-weight:600
+}
+.btn-ghost::after{background:var(--ink);opacity:.05}
+.btn-ghost:hover{box-shadow:none;border-color:var(--ink)}
+.on-dark .btn-ghost{--fg:var(--on-moss);border-color:rgba(238,240,233,.3)}
+.on-dark .btn-ghost::after{background:#fff;opacity:.09}
+.on-dark .btn-ghost:hover{border-color:rgba(238,240,233,.65)}
+.btn-sm{padding:11px 19px;font-size:.88rem}
+.link-u{
+  display:inline-flex;align-items:center;gap:.45em;text-decoration:none;font-weight:600;font-size:.95rem;
+  background-image:linear-gradient(var(--amber),var(--amber));background-size:0% 1.5px;
+  background-repeat:no-repeat;background-position:0 100%;padding-bottom:2px;
+  transition:background-size .35s var(--ease-out)
+}
+.link-u:hover{background-size:100% 1.5px}
+
+/* =================== HEADER =================== */
+.hdr{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:50;
+  background:var(--glass);backdrop-filter:blur(14px) saturate(1.3);
+  border-bottom:1px solid transparent;transition:border-color .3s var(--ease),box-shadow .3s var(--ease)
+}
+.hdr.stuck{border-bottom-color:var(--line);box-shadow:0 1px 20px rgba(20,32,27,.05)}
+.hdr-in{display:flex;align-items:center;gap:22px;min-height:76px;transition:min-height .3s var(--ease)}
+.hdr.stuck .hdr-in{min-height:64px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex:none;margin-right:auto}
+.brand svg{flex:none;transition:transform .5s var(--ease-out)}
+.brand:hover svg{transform:rotate(-8deg)}
+.brand-tx{display:flex;flex-direction:column;line-height:1.06}
+.brand-n{font-family:var(--display);font-size:1.17rem;font-weight:400;letter-spacing:-.01em}
+.brand-s{font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{
+  text-decoration:none;font-size:.92rem;font-weight:500;color:var(--ink-2);position:relative;padding:8px 0;
+  transition:color .25s var(--ease)
+}
+.nav a::after{
+  content:"";position:absolute;left:0;bottom:4px;height:1.5px;width:100%;background:var(--amber);
+  transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease-out)
+}
+.nav a:hover,.nav a[aria-current="true"]{color:var(--ink)}
+.nav a:hover::after,.nav a[aria-current="true"]::after{transform:scaleX(1);transform-origin:left}
+.hdr-cta{display:flex;align-items:center;gap:14px}
+.tel{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-weight:600;font-size:.93rem;white-space:nowrap}
+.tel svg{color:var(--sage)}
+.tel span{background-image:linear-gradient(var(--line),var(--line));background-size:100% 1px;background-repeat:no-repeat;background-position:0 100%;transition:background-image .25s}
+.tel:hover span{background-image:linear-gradient(var(--amber),var(--amber))}
+.burger{display:none;width:44px;height:44px;border:1.5px solid var(--line);border-radius:999px;background:none;cursor:pointer;place-items:center;flex:none}
+.burger i{display:block;width:17px;height:1.6px;background:var(--ink);border-radius:2px;transition:transform .35s var(--ease-out),opacity .2s}
+.burger i+i{margin-top:5px}
+.burger[aria-expanded="true"] i:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
+.burger[aria-expanded="true"] i:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] i:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
+
+.sheet{
+  position:fixed;inset:0;z-index:49;background:var(--moss);color:var(--on-moss);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:calc(90px + env(safe-area-inset-top,0px)) var(--gut-r) calc(40px + env(safe-area-inset-bottom,0px)) var(--gut-l);
+  clip-path:inset(0 0 100% 0);transition:clip-path .55s var(--ease-out);visibility:hidden
+}
+.sheet.open{clip-path:inset(0 0 0 0);visibility:visible}
+.sheet nav{display:flex;flex-direction:column;gap:4px}
+.sheet nav a{
+  font-family:var(--display);font-size:clamp(2rem,9vw,2.9rem);font-weight:300;text-decoration:none;
+  padding:9px 0;border-bottom:1px solid rgba(238,240,233,.12);
+  opacity:0;transform:translateY(22px);transition:opacity .5s var(--ease-out),transform .5s var(--ease-out),color .2s
+}
+.sheet nav a:hover{color:var(--amber)}
+.sheet.open nav a{opacity:1;transform:none}
+.sheet.open nav a:nth-child(1){transition-delay:.12s}
+.sheet.open nav a:nth-child(2){transition-delay:.17s}
+.sheet.open nav a:nth-child(3){transition-delay:.22s}
+.sheet.open nav a:nth-child(4){transition-delay:.27s}
+.sheet.open nav a:nth-child(5){transition-delay:.32s}
+.sheet-foot{margin-top:34px;display:flex;flex-direction:column;gap:16px;opacity:0;transition:opacity .5s .36s}
+.sheet.open .sheet-foot{opacity:1}
+.sheet-foot .tel{font-size:1.25rem}
+.sheet-foot .tel span{background-image:none}
+
+/* =================== HERO =================== */
+.hero{position:relative;padding-block:clamp(40px,5vw,72px) clamp(56px,7vw,96px);overflow:hidden}
+.hero::before{
+  content:"";position:absolute;top:-28%;right:-14%;width:62vw;height:62vw;max-width:860px;max-height:860px;
+  background:radial-gradient(circle at 50% 50%,var(--steam),transparent 62%);
+  opacity:.5;pointer-events:none;z-index:0
+}
+/* One column: the comparison is the hero, everything else sits around it. */
+.hero-stack{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(18px,2.4vw,28px)}
+.hero-top{display:flex;flex-direction:column;gap:14px;max-width:46ch}
+.hero-hint{font-size:1rem;color:var(--ink-2);line-height:1.55;max-width:48ch}
+.hero-stack .ba{width:100%;margin:0}
+.hero-stack .ba-note{margin-top:0}
+
+/* The room-after band: still/video with the booking badge */
+.film{background:var(--paper-2)}
+.film-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,4.4vw,72px);align-items:center}
+.film-art{position:relative;min-width:0}
+.film-art .frame{aspect-ratio:4/5}
+.film-copy{display:flex;flex-direction:column;gap:22px;min-width:0}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln > span{display:block;transition:transform .95s var(--ease-out)}
+.hero h1 em{font-style:italic;font-weight:200;color:var(--sage)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:13px;align-items:center}
+.hero-assure{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:.84rem;color:var(--ink-2);font-weight:500}
+.hero-assure li{display:flex;align-items:center;gap:7px;list-style:none}
+.hero-assure svg{color:var(--sage);flex:none}
+.hero-assure ul{display:contents}
+
+.frame{
+  position:relative;border-radius:var(--r);overflow:hidden;background:var(--paper-2);
+  box-shadow:var(--shadow-lg);aspect-ratio:4/5;max-width:100%
+}
+.frame img{width:100%;height:100%;object-fit:cover}
+.film-art .frame img{animation:drift 26s ease-in-out infinite alternate;transform-origin:58% 42%}
+/* Video sits over the still inside the same frame. The still is the fallback
+   and stays visible until the clip can actually play. */
+.hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.5s var(--ease-out)}
+.hero-vid.ready{opacity:1}
+@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.13)}}
+.inset{
+  position:absolute;left:-7%;bottom:-6%;width:46%;border-radius:12px;overflow:hidden;
+  box-shadow:var(--shadow-md);border:7px solid var(--paper);aspect-ratio:1/1;background:var(--paper-2)
+}
+.inset img{width:100%;height:100%;object-fit:cover}
+.badge{
+  position:absolute;right:-10px;top:30px;background:var(--surface);border:1px solid var(--line);
+  border-radius:999px;padding:10px 17px;display:flex;align-items:center;gap:9px;
+  box-shadow:var(--shadow-md);font-size:.8rem;font-weight:600;white-space:nowrap
+}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:var(--sage);flex:none;position:relative}
+.badge .dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--sage);opacity:.45;animation:pulse 2.6s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:.6}100%{transform:scale(1.5);opacity:0}}
+
+/* =================== ASSURANCE STRIP =================== */
+.strip{background:var(--moss);color:var(--on-moss)}
+.strip-in{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(238,240,233,.14)}
+.strip-i{background:var(--moss);padding:30px 26px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.strip-i b{font-family:var(--display);font-size:1.45rem;font-weight:300;letter-spacing:-.01em}
+.strip-i span{font-size:.86rem;color:var(--on-moss-2);line-height:1.5}
+
+/* =================== SERVICES =================== */
+.svc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2vw,28px);margin-top:52px}
+.svc{
+  position:relative;display:flex;flex-direction:column;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden;text-decoration:none;
+  transition:transform .45s var(--ease-out),box-shadow .45s var(--ease-out),border-color .3s;
+  min-width:0
+}
+.svc:hover,.svc:focus-visible{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:transparent}
+.svc-img{aspect-ratio:16/10;overflow:hidden;background:var(--paper-2);position:relative}
+.svc-img img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease-out)}
+.svc:hover .svc-img img{transform:scale(1.07)}
+.svc-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,32,27,.4),transparent 52%);opacity:0;transition:opacity .45s}
+.svc:hover .svc-img::after{opacity:1}
+.svc-tag{
+  position:absolute;left:14px;top:14px;z-index:1;background:var(--glass);backdrop-filter:blur(8px);
+  border-radius:999px;padding:6px 13px;font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase
+}
+.svc-b{padding:26px 26px 28px;display:flex;flex-direction:column;gap:13px;flex:1;min-width:0}
+.svc-b h3{font-size:1.5rem}
+.svc-b p{color:var(--ink-2);font-size:.95rem}
+.svc-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+.svc-list li{
+  list-style:none;font-size:.78rem;font-weight:500;padding:5px 11px;border-radius:999px;
+  background:var(--paper-2);color:var(--ink-2)
+}
+.svc-go{margin-top:auto;padding-top:6px;display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-size:.9rem;color:var(--ink)}
+.svc-go .ar{transition:transform .35s var(--ease-out)}
+.svc:hover .svc-go .ar{transform:translateX(5px)}
+
+/* =================== EDITORIAL / RITUAL =================== */
+.ritual{background:var(--paper-2)}
+.rit-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1fr);gap:clamp(34px,5vw,80px);align-items:center}
+.rit-art{position:relative;min-width:0}
+.rit-art .frame{aspect-ratio:3/4}
+.rit-art .inset{left:auto;right:-8%;bottom:auto;top:-6%;width:44%;border-color:var(--paper-2);aspect-ratio:4/5}
+.rit-copy{display:flex;flex-direction:column;gap:24px;min-width:0}
+.quote{
+  margin:6px 0 0;padding:26px 0 0;border-top:1px solid var(--line);
+  font-family:var(--display);font-size:clamp(1.3rem,2.2vw,1.72rem);font-weight:300;font-style:italic;
+  line-height:1.34;letter-spacing:-.01em;color:var(--ink)
+}
+.quote cite{display:block;margin-top:14px;font:600 .75rem/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;font-style:normal;color:var(--ink-2)}
+.pts{display:grid;gap:18px;margin:4px 0 0;padding:0}
+.pts li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+.pts svg{margin-top:3px;color:var(--sage);flex:none}
+.pts b{display:block;font-weight:600;font-size:.98rem;margin-bottom:2px}
+.pts span{color:var(--ink-2);font-size:.93rem}
+
+/* =================== PLAN BUILDER =================== */
+.plan{background:var(--moss);color:var(--on-moss);position:relative;overflow:hidden}
+.plan::before{
+  content:"";position:absolute;left:-16%;bottom:-32%;width:58vw;height:58vw;max-width:740px;max-height:740px;
+  background:radial-gradient(circle,rgba(126,154,137,.22),transparent 65%);pointer-events:none
+}
+.plan-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,3.4vw,56px);margin-top:50px;align-items:start}
+.pbox{background:var(--moss-2);border:1px solid rgba(238,240,233,.13);border-radius:var(--r);padding:clamp(22px,2.5vw,32px);min-width:0}
+fieldset{border:0;padding:0;margin:0 0 28px}
+fieldset:last-of-type{margin-bottom:0}
+legend{
+  padding:0;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--on-moss-2);margin-bottom:14px
+}
+legend .n{color:var(--amber);margin-right:.55em;font-variant-numeric:tabular-nums}
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chip{position:relative;min-width:0}
+.chip input{position:absolute;opacity:0;width:0;height:0}
+.chip span{
+  display:inline-flex;align-items:center;gap:8px;padding:11px 17px;border-radius:999px;
+  border:1.5px solid rgba(238,240,233,.22);font-size:.89rem;font-weight:500;cursor:pointer;
+  transition:border-color .25s var(--ease),background-color .25s var(--ease),color .25s var(--ease),transform .2s var(--ease);
+  user-select:none;white-space:nowrap
+}
+.chip span .tick{width:0;overflow:hidden;transition:width .3s var(--ease-out);display:inline-flex;flex:none}
+.chip:hover span{border-color:rgba(238,240,233,.5);transform:translateY(-1px)}
+.chip input:checked + span{background:var(--amber);border-color:var(--amber);color:var(--on-amber);font-weight:600}
+.chip input:checked + span .tick{width:14px}
+.chip input:focus-visible + span{outline:2.5px solid var(--amber);outline-offset:3px}
+.plan .chip input:checked + span{box-shadow:0 6px 18px rgba(217,160,91,.3)}
+
+.out{
+  position:sticky;top:calc(96px + env(safe-area-inset-top,0px));
+  background:var(--surface);color:var(--ink);border-radius:var(--r);box-shadow:var(--shadow-lg);
+  overflow:hidden;min-width:0
+}
+.out-h{padding:24px 26px 20px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.out-h h3{font-size:1.45rem}
+.out-meta{display:flex;flex-wrap:wrap;gap:8px}
+.pill{
+  font-size:.74rem;font-weight:600;letter-spacing:.04em;padding:5px 11px;border-radius:999px;
+  background:var(--pill-bg);color:var(--pill-fg)
+}
+.pill.amber{background:var(--amber);color:var(--on-amber)}
+.out-body{max-height:min(46vh,430px);overflow-y:auto;overscroll-behavior:contain;padding:4px 26px 8px}
+.out-room{padding:18px 0;border-bottom:1px solid var(--line)}
+.out-room:last-child{border-bottom:0}
+.out-room h4{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.out-room h4 em{font-style:normal;color:var(--sage);font-variant-numeric:tabular-nums}
+.out-room ul{margin:0;padding:0;display:grid;gap:7px}
+.out-room li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:10px;font-size:.89rem;color:var(--ink-2);line-height:1.45}
+.out-room li svg{margin-top:5px;color:var(--sage);flex:none}
+.out-empty{padding:34px 4px 38px;text-align:center;color:var(--ink-2);font-size:.93rem}
+.out-empty svg{color:var(--sage);margin:0 auto 12px}
+.out-f{padding:20px 26px calc(22px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--paper);display:flex;flex-direction:column;gap:11px}
+.out-f .btn{width:100%}
+.out-note{font-size:.78rem;color:var(--ink-2);text-align:center;line-height:1.45}
+.fade-sw{animation:fadeSw .42s var(--ease-out)}
+@keyframes fadeSw{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+/* =================== PROCESS =================== */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.6vw,38px);margin-top:52px;counter-reset:s}
+.step{position:relative;padding-top:30px;border-top:1px solid var(--line);min-width:0}
+.step::before{
+  counter-increment:s;content:counter(s,decimal-leading-zero);
+  position:absolute;top:-1px;left:0;padding-right:14px;background:var(--paper);
+  transform:translateY(-52%);font:600 .78rem/1 var(--sans);letter-spacing:.14em;color:var(--amber)
+}
+.step h3{font-size:1.3rem;margin-bottom:9px}
+.step p{color:var(--ink-2);font-size:.94rem}
+
+/* =================== REVIEWS =================== */
+.rev{background:var(--paper-2)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,24px);margin-top:46px}
+.rev-slot{
+  border:1.5px dashed var(--line);border-radius:var(--r);padding:30px 26px;min-height:208px;
+  display:flex;flex-direction:column;gap:12px;justify-content:center;align-items:flex-start;min-width:0;
+  background:
+    repeating-linear-gradient(135deg,transparent 0 11px,rgba(126,154,137,.05) 11px 22px)
+}
+.rev-slot .stars{display:flex;gap:3px;color:var(--line)}
+.rev-slot p{font-family:var(--display);font-size:1.12rem;font-style:italic;font-weight:300;color:var(--ink-2);line-height:1.42}
+.rev-slot small{font-size:.76rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sage)}
+.rev-note{
+  margin-top:26px;display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;justify-content:space-between;
+  padding:20px 24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)
+}
+.rev-note p{font-size:.92rem;color:var(--ink-2);max-width:62ch}
+
+/* =================== FAQ =================== */
+.faq-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,4vw,70px);align-items:start}
+.acc{border-top:1px solid var(--line)}
+.acc details{border-bottom:1px solid var(--line)}
+.acc summary{
+  list-style:none;cursor:pointer;padding:22px 40px 22px 0;position:relative;
+  font-family:var(--display);font-size:clamp(1.08rem,1.6vw,1.26rem);font-weight:400;line-height:1.3;
+  transition:color .25s
+}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary:hover{color:var(--sage)}
+.acc summary::after,.acc summary::before{
+  content:"";position:absolute;right:6px;top:50%;background:var(--amber);border-radius:2px;transition:transform .35s var(--ease-out)
+}
+.acc summary::after{width:15px;height:1.8px;margin-top:-.9px}
+.acc summary::before{width:1.8px;height:15px;margin-top:-7.5px;right:12.6px}
+.acc details[open] summary::before{transform:rotate(90deg);opacity:0}
+.acc .a{padding:0 44px 24px 0;color:var(--ink-2);font-size:.95rem;animation:fadeSw .4s var(--ease-out)}
+
+/* =================== CONTACT =================== */
+.cta{background:var(--moss);color:var(--on-moss);position:relative;overflow:hidden}
+.cta::before{
+  content:"";position:absolute;right:-10%;top:-26%;width:52vw;height:52vw;max-width:680px;max-height:680px;
+  background:radial-gradient(circle,rgba(217,160,91,.17),transparent 66%);pointer-events:none
+}
+.cta-grid{position:relative;display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:clamp(34px,4.4vw,72px);align-items:start}
+.cta-side{display:flex;flex-direction:column;gap:26px;min-width:0}
+.cta-contact{display:grid;gap:18px;padding-top:24px;border-top:1px solid rgba(238,240,233,.16)}
+.cc{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+.cc svg{margin-top:4px;color:var(--sage);flex:none}
+.cc b{display:block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--on-moss-2);margin-bottom:4px}
+.cc a,.cc span{font-size:1.04rem;font-weight:500;text-decoration:none;color:var(--on-moss);word-break:break-word}
+.cc a:hover{color:var(--amber)}
+.copy-b{
+  margin-left:10px;border:1px solid rgba(238,240,233,.26);background:none;border-radius:999px;
+  padding:3px 10px;font-size:.7rem;font-weight:600;cursor:pointer;color:var(--on-moss-2);
+  transition:border-color .2s,color .2s;vertical-align:2px
+}
+.copy-b:hover{border-color:var(--amber);color:var(--amber)}
+
+form{background:var(--surface);color:var(--ink);border-radius:var(--r);padding:clamp(24px,2.8vw,36px);box-shadow:var(--shadow-lg);min-width:0}
+.f-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.f{position:relative;display:flex;flex-direction:column;margin-bottom:16px;min-width:0}
+.f label{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2);margin-bottom:7px}
+.f label .req{color:var(--amber)}
+.f input,.f select,.f textarea{
+  width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:10px;background:var(--paper);
+  transition:border-color .22s var(--ease),box-shadow .22s var(--ease),background-color .22s;font-size:.96rem
+}
+.f textarea{resize:vertical;min-height:96px}
+.f select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%234F5F57' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center;padding-right:38px}
+.f input:focus,.f select:focus,.f textarea:focus{
+  outline:0;border-color:var(--sage);background:var(--surface);box-shadow:0 0 0 3.5px rgba(126,154,137,.18)
+}
+.f.ok input,.f.ok select,.f.ok textarea{border-color:var(--sage)}
+.f.bad input,.f.bad select,.f.bad textarea{border-color:#C0523F;box-shadow:0 0 0 3.5px rgba(192,82,63,.13)}
+.err{font-size:.79rem;color:#C0523F;font-weight:500;margin-top:6px;display:none;align-items:center;gap:5px}
+.f.bad .err{display:flex;animation:fadeSw .3s var(--ease-out)}
+.f-sum{
+  display:none;gap:8px;align-items:flex-start;padding:13px 15px;border-radius:10px;
+  background:var(--pill-bg);color:var(--pill-fg);font-size:.86rem;line-height:1.45;margin-bottom:16px
+}
+.f-sum.on{display:grid;grid-template-columns:auto 1fr;animation:fadeSw .4s var(--ease-out)}
+.f-sum svg{margin-top:3px;flex:none}
+.f-sum b{display:block;margin-bottom:2px}
+.f-foot{display:flex;flex-direction:column;gap:13px;margin-top:4px}
+.f-foot .btn{width:100%}
+.f-fine{font-size:.78rem;color:var(--ink-2);text-align:center;line-height:1.5}
+.f-state{display:none;flex-direction:column;gap:14px;animation:fadeSw .45s var(--ease-out)}
+.f-state.on{display:flex}
+.f-state h3{font-size:1.5rem;display:flex;align-items:center;gap:11px}
+.f-state h3 svg{color:var(--sage);flex:none}
+.f-state p{color:var(--ink-2);font-size:.94rem}
+.f-state pre{
+  margin:0;padding:16px;background:var(--paper);border:1px solid var(--line);border-radius:10px;
+  font:500 .83rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  white-space:pre-wrap;word-break:break-word;max-height:220px;overflow:auto
+}
+.f-state .row{display:flex;flex-wrap:wrap;gap:10px}
+form.sent .f-live{display:none}
+.btn[aria-busy="true"]{pointer-events:none;opacity:.75}
+.btn .spin{display:none;width:15px;height:15px;border:2px solid rgba(20,32,27,.3);border-top-color:var(--on-amber);border-radius:50%;animation:spin .7s linear infinite}
+.btn[aria-busy="true"] .spin{display:block}
+.btn[aria-busy="true"] .ar{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* =================== FOOTER =================== */
+.ft{background:var(--moss-2);color:var(--on-moss);padding-block:clamp(48px,5vw,72px) 0}
+.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:clamp(26px,3vw,48px)}
+.ft h4{font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--on-moss-2);margin-bottom:16px}
+.ft ul{margin:0;padding:0;display:grid;gap:9px}
+.ft li{list-style:none;font-size:.92rem;color:var(--on-moss-2)}
+.ft a{text-decoration:none;color:var(--on-moss-2);transition:color .22s}
+.ft a:hover{color:var(--amber)}
+.ft-brand{display:flex;flex-direction:column;gap:16px;min-width:0}
+.ft-brand p{font-size:.92rem;color:var(--on-moss-2);max-width:40ch}
+.ft-areas{display:flex;flex-wrap:wrap;gap:7px}
+.ft-areas li{font-size:.78rem;padding:4px 10px;border:1px solid rgba(238,240,233,.16);border-radius:999px;color:var(--on-moss-2)}
+.ft-bot{
+  margin-top:clamp(40px,4vw,60px);padding-block:22px calc(22px + env(safe-area-inset-bottom,0px));
+  border-top:1px solid rgba(238,240,233,.14);
+  display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;align-items:center;
+  font-size:.8rem;color:var(--on-moss-2)
+}
+.ft-bot nav{display:flex;flex-wrap:wrap;gap:18px}
+
+/* =================== MOBILE ACTION BAR =================== */
+.mbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:48;display:none;gap:10px;
+  padding:11px max(14px,env(safe-area-inset-right,0px)) calc(11px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));
+  background:var(--glass);backdrop-filter:blur(14px);border-top:1px solid var(--line);
+  transform:translateY(130%);transition:transform .45s var(--ease-out)
+}
+.mbar.on{transform:none}
+.mbar .btn{flex:1;padding:13px 10px;font-size:.9rem}
+
+/* =================== SCROLL REVEAL (JS + motion-safe only) =================== */
+@media (prefers-reduced-motion:no-preference){
+  .js .rv{opacity:0;transform:translateY(26px);transition:opacity .85s var(--ease-out),transform .85s var(--ease-out)}
+  .js .rv.in{opacity:1;transform:none}
+  .js .rv-s > *{opacity:0;transform:translateY(24px);transition:opacity .75s var(--ease-out),transform .75s var(--ease-out)}
+  .js .rv-s.in > *{opacity:1;transform:none}
+  .js .rv-s.in > *:nth-child(2){transition-delay:.09s}
+  .js .rv-s.in > *:nth-child(3){transition-delay:.18s}
+  .js .rv-s.in > *:nth-child(4){transition-delay:.27s}
+  .js .rv-s.in > *:nth-child(5){transition-delay:.36s}
+  .js .rv-clip{clip-path:inset(0 0 100% 0);transition:clip-path 1.05s var(--ease-out)}
+  .js .rv-clip.in{clip-path:inset(0 0 0 0)}
+}
+/* The entrance arms itself only when it can actually play. With no JS, reduced
+   motion, or a backgrounded tab, .arm is never added and the hero is simply
+   visible — it is never left waiting on a frame that may not come. */
+.hero.arm h1 .ln > span{transform:translateY(105%)}
+.hero.arm.lit h1 .ln > span{transform:none}
+.hero.arm .hero-top > *:not(h1),.hero.arm .ba,.hero.arm .hero-actions,.hero.arm .hero-assure,.hero.arm .ba-note{opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.hero.arm.lit .hero-top > *:not(h1),.hero.arm.lit .ba,.hero.arm.lit .hero-actions,.hero.arm.lit .hero-assure,.hero.arm.lit .ba-note{opacity:1;transform:none}
+.hero.arm.lit h1 .ln:nth-child(1) > span{transition-delay:.06s}
+.hero.arm.lit h1 .ln:nth-child(2) > span{transition-delay:.15s}
+.hero.arm.lit h1 .ln:nth-child(3) > span{transition-delay:.24s}
+.hero.arm.lit .eyebrow{transition-delay:.02s}
+.hero.arm.lit .lede{transition-delay:.34s}
+.hero.arm.lit .hero-actions{transition-delay:.42s}
+.hero.arm.lit .hero-assure{transition-delay:.5s}
+.hero.arm.lit .ba{transition-delay:.26s}
+.hero.arm.lit .ba-note{transition-delay:.56s}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+  .film-art .frame img{animation:none;transform:none}
+  .hero h1 .ln > span{transform:none}
+  .hero .hero-top > *,.hero .ba,.hero .hero-actions,.hero .hero-assure{opacity:1;transform:none}
+}
+html{scroll-behavior:smooth;scroll-padding-top:calc(96px + env(safe-area-inset-top,0px))}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* =================== FLOOR PLAN ===================
+   A second way into the same room checkboxes. Pointer-only by design: the
+   chips below are the accessible control and already take keyboard focus,
+   so this doesn't duplicate the tab order. */
+.plan-map{margin-bottom:16px}
+.plan-map svg{width:100%;height:auto;display:block;max-height:300px}
+.room rect{
+  fill:rgba(238,240,233,.07);stroke:rgba(238,240,233,.22);stroke-width:2;
+  transition:fill .28s var(--ease),stroke .28s var(--ease);cursor:pointer
+}
+.room:hover rect{fill:rgba(238,240,233,.14);stroke:rgba(238,240,233,.45)}
+.room text{
+  fill:var(--on-moss-2);font-family:var(--sans);font-size:15px;font-weight:600;
+  pointer-events:none;transition:fill .28s var(--ease)
+}
+.room .cnt{font-family:var(--mono);font-size:12px;fill:var(--on-moss-2);opacity:.6}
+.room.sel rect{fill:var(--amber);stroke:var(--amber)}
+.room.sel text{fill:var(--on-amber)}
+.room.sel .cnt{fill:var(--on-amber);opacity:.75}
+@media (prefers-reduced-motion:reduce){.room rect,.room text{transition:none}}
+@media (max-width:620px){.plan-map{display:none}}   /* chips alone below this */
+
+/* =================== BEFORE / AFTER ===================
+   A real draggable comparison. The range input IS the control, so it is
+   keyboard-accessible and works on touch without any custom gesture code.
+   It demonstrates itself once on first view — nobody discovers a slider
+   they weren't told about. */
+.ba-sec{background:var(--paper-2)}
+.ba{
+  position:relative;margin:40px 0 0;border-radius:var(--r);overflow:hidden;
+  aspect-ratio:1024/688;background:var(--paper);box-shadow:var(--shadow-md);--x:45%
+}
+.ba-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ba-after{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--x)) 0 0)}
+.ba-line{
+  position:absolute;top:0;bottom:0;left:var(--x);width:2px;margin-left:-1px;
+  background:var(--surface);pointer-events:none;box-shadow:0 0 0 1px rgba(20,32,27,.2)
+}
+.ba-grip{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:44px;height:44px;border-radius:50%;background:var(--surface);color:var(--moss);
+  display:grid;place-items:center;box-shadow:0 2px 10px rgba(20,32,27,.28)
+}
+.ba-range{
+  position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;
+  cursor:ew-resize;appearance:none;background:none
+}
+.ba-range::-webkit-slider-thumb{appearance:none;width:44px;height:100%}
+.ba:focus-within .ba-grip{box-shadow:0 0 0 3px var(--amber),0 2px 10px rgba(20,32,27,.28)}
+.ba-tag{
+  position:absolute;top:14px;z-index:2;font-size:.68rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;padding:6px 11px;border-radius:999px;backdrop-filter:blur(6px);
+  background:rgba(20,32,27,.62);color:#fff;pointer-events:none
+}
+.ba-tag.l{left:14px}
+.ba-tag.r{right:14px}
+.ba.demo .ba-after,.ba.demo .ba-line{transition:clip-path 1.5s var(--ease-out),left 1.5s var(--ease-out)}
+.ba-note{
+  margin-top:18px;padding:15px 19px;border:1px dashed var(--line);border-radius:var(--r);
+  font-size:.86rem;color:var(--ink-2);line-height:1.5;background:var(--surface)
+}
+.ba-note b{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.ba.demo .ba-after,.ba.demo .ba-line{transition:none}}
+
+
+/* =================== MOTION LAYER =================== */
+/* a quiet reading-progress hairline, sage into brass */
+.prog{
+  position:fixed;top:env(safe-area-inset-top,0px);left:0;height:2px;width:0;z-index:61;
+  background:linear-gradient(90deg,var(--sage),var(--amber));pointer-events:none;opacity:.9
+}
+
+/* =================== GALLERY =================== */
+/* Editorial, deliberately uneven — columns sit at different heights so it
+   reads as a spread rather than a product grid. */
+.look{background:var(--paper-2)}
+.gal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,1.4vw,18px);margin-top:44px;align-items:start}
+.gal figure{margin:0;min-width:0}
+.gal figure:nth-child(2){margin-top:clamp(18px,3vw,46px)}
+.gal figure:nth-child(4){margin-top:clamp(12px,2.2vw,34px)}
+.gal .sh{
+  position:relative;overflow:hidden;border-radius:var(--r);background:var(--paper);
+  box-shadow:var(--shadow-sm);aspect-ratio:3/4
+}
+.gal figure:nth-child(2) .sh,.gal figure:nth-child(3) .sh{aspect-ratio:4/5}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease-out)}
+.gal figure:hover img{transform:scale(1.05)}
+.gal figcaption{
+  margin-top:11px;font-size:.8rem;color:var(--ink-2);line-height:1.4;
+  display:flex;flex-direction:column;gap:2px
+}
+.gal figcaption b{
+  font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--sage)
+}
+/* a clean edge wipes each frame open as it comes into view */
+@media (prefers-reduced-motion:no-preference){
+  .js .gal figure .sh{clip-path:inset(0 100% 0 0);transition:clip-path 1.05s var(--ease-out)}
+  .js .gal.in figure .sh{clip-path:inset(0 0 0 0)}
+  .js .gal.in figure:nth-child(2) .sh{transition-delay:.12s}
+  .js .gal.in figure:nth-child(3) .sh{transition-delay:.24s}
+  .js .gal.in figure:nth-child(4) .sh{transition-delay:.36s}
+}
+.gal-note{
+  margin-top:30px;padding:16px 20px;border:1px dashed var(--line);border-radius:var(--r);
+  font-size:.86rem;color:var(--ink-2);line-height:1.5;background:var(--surface)
+}
+.gal-note b{color:var(--ink)}
+
+/* =================== RESPONSIVE =================== */
+@media (max-width:1040px){
+  .nav{display:none}
+  .burger{display:grid}
+  .hdr-cta .btn{display:none}
+  .film-grid{grid-template-columns:1fr;gap:40px}
+  .film-art{max-width:460px;width:100%;margin-inline:auto;order:-1}
+  .rit-grid,.cta-grid,.faq-grid{grid-template-columns:1fr}
+  .rit-art{max-width:460px;margin-inline:auto;order:-1}
+  .plan-grid{grid-template-columns:1fr}
+  .out{position:static}
+  .out-body{max-height:none}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .ft-brand{grid-column:1/-1}
+}
+@media (max-width:860px){
+  .gal{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gal figure:nth-child(3){margin-top:clamp(12px,2.2vw,34px)}
+  .strip-in{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:1fr;gap:26px}
+  .rev-grid{grid-template-columns:1fr}
+  .rev-slot{min-height:0}
+}
+@media (max-width:680px){
+  :root{--band:clamp(52px,11vw,72px)}
+  .svc-grid{grid-template-columns:1fr}
+  .f-row{grid-template-columns:1fr;gap:0}
+  .mbar{display:flex}
+  body{padding-bottom:78px}
+  .hdr-cta .tel span{display:none}
+  .hdr-cta .tel{width:42px;height:42px;justify-content:center;border:1.5px solid var(--line);border-radius:999px}
+  /* The brand block is 257px and was flex:none, so brand + tel + burger came
+     to 419px in a 375px viewport and pushed the header 24px off-screen. */
+  .brand{min-width:0;flex:0 1 auto}
+  .brand-s{display:none}
+  .brand-tx{min-width:0}
+  .brand-n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .inset{width:50%;left:-4%;bottom:-5%}
+  .badge{right:0;top:16px;font-size:.74rem;padding:8px 13px}
+  .out-f{padding-bottom:22px}
+  .ft-grid{grid-template-columns:1fr;gap:30px}
+  .quote{font-size:1.22rem}
+}
+@media (max-width:420px){
+  .strip-in{grid-template-columns:1fr}
+  .strip-i{padding:22px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<a href="#main" class="sr">Skip to content</a>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="#top" aria-label="Therapeutic Cleaning Co. — home">
+      <!-- [CONFIRM] placeholder mark: a leaf reading as both frond and water drop -->
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+        <circle cx="17" cy="17" r="16" stroke="currentColor" stroke-opacity=".22" stroke-width="1.2"/>
+        <path d="M17 7c5.2 2.4 7.6 6 7.6 10.1 0 4.3-3.4 7.7-7.6 7.7s-7.6-3.4-7.6-7.7C9.4 13 11.8 9.4 17 7Z" fill="var(--sage)" fill-opacity=".28"/>
+        <path d="M17 26V9.5" stroke="var(--moss)" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M17 15.4c-1.9-.7-3.3-2-4.1-3.9M17 19.6c1.9-.7 3.3-2 4.1-3.9" stroke="var(--moss)" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-tx">
+        <span class="brand-n">Therapeutic Cleaning</span>
+        <span class="brand-s">House cleaning &amp; maintenance</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#plan">Build your plan</a>
+      <a href="#why">Why us</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="hdr-cta">
+      <a class="tel" href="tel:+15035550142" aria-label="Call (503) 555-0142">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.2 2.2 6.6 5 5.3 6.4a9 9 0 0 0 4.3 4.3L11 9.4l2.8 1.4v2.4a1 1 0 0 1-1.1 1C6.8 13.8 2.2 9.2 1.8 3.3a1 1 0 0 1 1-1.1h2.4Z" stroke="currentColor" stroke-width="1.35" stroke-linejoin="round"/></svg>
+        <span>(503)&nbsp;555-0142</span>
+      </a>
+      <a class="btn btn-sm" href="#contact">Free estimate <svg class="ar" width="13" height="11" viewBox="0 0 13 11" fill="none" aria-hidden="true"><path d="M1 5.5h10M7.3 1.5 11.3 5.5 7.3 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="sheet" aria-label="Open menu"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="#services">Services</a>
+    <a href="#plan">Build your plan</a>
+    <a href="#why">Why us</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="sheet-foot">
+    <a class="tel" href="tel:+15035550142"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.2 2.2 6.6 5 5.3 6.4a9 9 0 0 0 4.3 4.3L11 9.4l2.8 1.4v2.4a1 1 0 0 1-1.1 1C6.8 13.8 2.2 9.2 1.8 3.3a1 1 0 0 1 1-1.1h2.4Z" stroke="currentColor" stroke-width="1.35" stroke-linejoin="round"/></svg><span>(503) 555-0142</span></a>
+    <a class="btn" href="#contact" style="align-self:flex-start">Request a free estimate</a>
+  </div>
+</div>
+
+<main id="main">
+  <!-- ===================== HERO =====================
+       The comparison leads. Words are deliberately short: the thing that makes
+       someone care is dragging the handle, not reading a paragraph. -->
+  <section class="hero" id="top">
+    <div class="wrap hero-stack">
+      <div class="hero-top">
+        <p class="eyebrow">House cleaning &amp; home maintenance</p>
+        <h1 class="h-xl">
+          <span class="ln"><span>Same room.</span></span>
+          <span class="ln"><span><em>One visit.</em></span></span>
+        </h1>
+        <p class="hero-hint">Drag the handle across &mdash; that is a single clean, start to finish.</p>
+      </div>
+
+      <!-- [CONFIRM] Both frames are generated illustrations of the same room, not
+           photographs of a real job. The caption below says so. Replace with her
+           own paired photos the moment she has a set. -->
+      <figure class="ba" id="ba">
+        <img class="ba-img" src="img/ba-before.png" alt="A living room before cleaning: clothes across the sofa, mugs and clutter on the table, toys on the floor" width="1024" height="688" fetchpriority="high">
+        <div class="ba-after">
+          <img class="ba-img" src="img/ba-after.png" alt="The same living room after cleaning: cushions straightened, table clear, floor tidy, rug squared" width="1024" height="688">
+        </div>
+        <span class="ba-tag l">After</span>
+        <span class="ba-tag r">Before</span>
+        <input class="ba-range" id="ba-range" type="range" min="0" max="100" value="45" aria-label="Drag to reveal the cleaned room">
+        <div class="ba-line" aria-hidden="true">
+          <span class="ba-grip">
+            <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M8 5 3.5 10 8 15M12 5l4.5 5-4.5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </figure>
+
+      <div class="hero-actions">
+        <a class="btn" href="#contact">Request a free estimate <svg class="ar" width="13" height="11" viewBox="0 0 13 11" fill="none" aria-hidden="true"><path d="M1 5.5h10M7.3 1.5 11.3 5.5 7.3 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn btn-ghost" href="#plan">Build your plan</a>
+      </div>
+
+      <!-- [CONFIRM] all three assurances below -->
+      <ul class="hero-assure">
+        <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7.4 5.3 10.7 12 4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>No rotating roster</li>
+        <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7.4 5.3 10.7 12 4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Supplies included</li>
+        <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7.4 5.3 10.7 12 4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>No lock-in contract</li>
+      </ul>
+
+      <p class="ba-note">These two frames are illustrations, not a real job &mdash; they show what
+        the work covers. Her own before-and-afters replace them as soon as there is a set.</p>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICES ===================== -->
+  <section class="band" id="services">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">Services</p>
+        <h2 class="h-lg">Four ways we keep a house steady.</h2>
+        <p class="lede">Most homes start with a one-time deep clean, then settle into a
+          recurring rhythm. Pick where you are — you can change it any time.</p>
+      </div>
+
+      <div class="svc-grid">
+        <a class="svc rv" href="#plan">
+          <div class="svc-img">
+            <span class="svc-tag">Most booked</span>
+            <img src="img/living-soft.jpg" alt="A calm grey-toned living room with soft textiles and plants" loading="lazy" width="800" height="500">
+          </div>
+          <div class="svc-b">
+            <h3>Recurring maintenance</h3>
+            <p>Weekly, fortnightly or monthly. The full room checklist every visit, plus a rotating deep task so the house never quietly falls behind.</p>
+            <ul class="svc-list"><li>Kitchen</li><li>Bathrooms</li><li>Bedrooms</li><li>Living areas</li><li>Floors</li></ul>
+            <span class="svc-go">Build your plan <svg class="ar" width="13" height="11" viewBox="0 0 13 11" fill="none" aria-hidden="true"><path d="M1 5.5h10M7.3 1.5 11.3 5.5 7.3 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </a>
+
+        <a class="svc rv" href="#contact">
+          <div class="svc-img">
+            <img src="img/kitchen.jpg" alt="A bright white kitchen with a marble island" loading="lazy" width="800" height="500">
+          </div>
+          <div class="svc-b">
+            <h3>Deep clean</h3>
+            <p>The reset. Inside the oven and fridge, window tracks, grout, skirting boards, door frames, light fittings — the work a weekly visit never reaches.</p>
+            <ul class="svc-list"><li>Inside oven</li><li>Inside fridge</li><li>Grout detail</li><li>Window tracks</li><li>Skirtings</li></ul>
+            <span class="svc-go">Request an estimate <svg class="ar" width="13" height="11" viewBox="0 0 13 11" fill="none" aria-hidden="true"><path d="M1 5.5h10M7.3 1.5 11.3 5.5 7.3 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </a>
+
+        <a class="svc rv" href="#contact">
+          <div class="svc-img">
+            <img src="img/bedroom.jpg" alt="A neatly made bed with crisp white linen" loading="lazy" width="800" height="500">
+          </div>
+          <div class="svc-b">
+            <h3>Move in &amp; move out</h3>
+            <p>Empty-house cleans timed to a handover date. Inside every cupboard and appliance, walls spot-cleaned, floors finished last.</p>
+            <ul class="svc-list"><li>Cupboard interiors</li><li>Appliances</li><li>Walls &amp; marks</li><li>Final floors</li></ul>
+            <span class="svc-go">Check a date <svg class="ar" width="13" height="11" viewBox="0 0 13 11" fill="none" aria-hidden="true"><path d="M1 5.5h10M7.3 1.5 11.3 5.5 7.3 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </a>
+
+        <a class="svc rv" href="#contact">
+          <div class="svc-img">
+            <img src="img/bathroom.jpg" alt="A marble-tiled bathroom with a glass shower" loading="lazy" width="800" height="500">
+          </div>
+          <div class="svc-b">
+            <h3>Home maintenance</h3>
+            <p>The small jobs that stack up between cleans — filters, fittings, seasonal work. Added to a visit you already have, so nothing needs a second appointment.</p>
+            <ul class="svc-list"><li>HVAC filters</li><li>Range hood filters</li><li>Interior windows</li><li>Laundry</li><li>Seasonal</li></ul>
+            <span class="svc-go">Ask what's possible <svg class="ar" width="13" height="11" viewBox="0 0 13 11" fill="none" aria-hidden="true"><path d="M1 5.5h10M7.3 1.5 11.3 5.5 7.3 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THE ROOM AFTER ===================== -->
+  <section class="band film">
+    <div class="wrap film-grid">
+      <div class="film-art rv">
+        <div class="frame">
+          <img src="img/hero-living.jpg"
+               alt="Sunlight falling across the hardwood floor of a tidy, high-ceilinged living room" width="1100" height="1375" loading="lazy">
+          <!-- Attached by script only when motion is wanted and the connection
+               isn't metered. The still above is the real fallback. -->
+          <video class="hero-vid" id="hero-vid" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+        </div>
+        <div class="badge"><span class="dot"></span> Booking 2&ndash;3 weeks out</div><!-- [CONFIRM] -->
+      </div>
+
+      <div class="film-copy rv">
+        <p class="eyebrow">What you come back to</p>
+        <h2 class="h-lg">A house that finally sits still.</h2>
+        <p class="lede">
+          Nobody books a cleaner because they like tidy counters. They book because the pile
+          of undone things follows them around the house. The work is the same either way &mdash;
+          what changes is whether you are still carrying it.
+        </p>
+        <ul class="hero-assure" style="gap:10px 24px">
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7.4 5.3 10.7 12 4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Weekly, fortnightly or monthly</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7.4 5.3 10.7 12 4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Mostly houses, the occasional small office</li>
+        </ul>
+        <div class="hero-actions">
+          <a class="btn btn-ghost" href="#plan">Build your plan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ASSURANCE STRIP ===================== -->
+  <!-- [CONFIRM] every figure and statement in this strip -->
+  <section class="strip on-dark" aria-label="What to expect">
+    <div class="wrap" style="padding-block:0">
+      <div class="strip-in rv-s">
+        <div class="strip-i"><b>Your checklist</b><span>You set what matters room by room. We work to it, not a generic script.</span></div>
+        <div class="strip-i"><b>No rotating roster</b><span>The same familiar hands return each visit and learn your home.</span></div>
+        <div class="strip-i"><b>Supplies included</b><span>Low-scent, pet- and child-conscious products come with us.</span></div>
+        <div class="strip-i"><b>Flexible</b><span>Reschedule or pause any time. No contract, no cancellation fee.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RITUAL / WHY ===================== -->
+  <section class="band ritual" id="why">
+    <div class="wrap rit-grid">
+      <div class="rit-art rv">
+        <div class="frame rv-clip">
+          <img src="img/linen.jpg" alt="Fresh white bed linen beside a panelled door" loading="lazy" width="840" height="1120">
+        </div>
+        <div class="inset">
+          <img src="img/bath-tub.jpg" alt="A white freestanding bathtub with a brushed tap" loading="lazy" width="520" height="650">
+        </div>
+      </div>
+
+      <div class="rit-copy">
+        <p class="eyebrow">Why us</p>
+        <h2 class="h-lg">A clean house is a nervous-system thing.</h2>
+        <p class="lede">
+          Nobody books a cleaner because they like tidy counters. They book because the
+          pile of undone things follows them around the house. The work is the same
+          either way — what changes is whether you are still carrying it.
+        </p>
+
+        <ul class="pts rv-s">
+          <li>
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.6" stroke="currentColor" stroke-width="1.3"/><path d="M5 8.7 7.4 11 12 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><b>Never a stranger in your house</b><span>No rotating roster. Whoever cleans for you learns which cupboard sticks, which rug lifts, and where you'd rather they didn't move things.</span></div>
+          </li>
+          <li>
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.6" stroke="currentColor" stroke-width="1.3"/><path d="M5 8.7 7.4 11 12 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><b>A checklist you actually set</b><span>Build it below, change it whenever. Skip the guest room, always do the oven, never touch the record shelf — it's your list.</span></div>
+          </li>
+          <li>
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.6" stroke="currentColor" stroke-width="1.3"/><path d="M5 8.7 7.4 11 12 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><b>Low-scent products, brought with us</b><span>Chosen so the house smells like nothing at all afterwards — not like a cleaning product. Allergies and pets, tell us first.</span></div>
+          </li>
+          <li>
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.6" stroke="currentColor" stroke-width="1.3"/><path d="M5 8.7 7.4 11 12 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><b>Nothing locked in</b><span>Pause for a month, move to fortnightly, stop entirely. No contract and no cancellation fee.</span></div>
+          </li>
+        </ul>
+
+        <blockquote class="quote">
+          “Leave the house better than the morning you left it.”
+          <cite>How we brief every visit</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PLAN BUILDER ===================== -->
+  <section class="band plan on-dark" id="plan">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">Build your plan</p>
+        <h2 class="h-lg">Tell us the house. See exactly what gets done.</h2>
+        <p class="lede">Pick your rooms, your rhythm and any extras. The panel builds the
+          real checklist your cleaners would work from — then sends it straight to the estimate form.</p>
+      </div>
+
+      <div class="plan-grid">
+        <div class="pbox">
+          <form id="builder" novalidate>
+            <fieldset>
+              <legend><span class="n">01</span> How often</legend>
+              <div class="chips" role="radiogroup" aria-label="Visit frequency">
+                <label class="chip"><input type="radio" name="freq" value="weekly" checked><span><span class="tick"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.3 4.7 9 10 3.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Weekly</span></label>
+                <label class="chip"><input type="radio" name="freq" value="fortnightly"><span><span class="tick"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.3 4.7 9 10 3.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fortnightly</span></label>
+                <label class="chip"><input type="radio" name="freq" value="monthly"><span><span class="tick"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.3 4.7 9 10 3.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monthly</span></label>
+                <label class="chip"><input type="radio" name="freq" value="deep"><span><span class="tick"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.3 4.7 9 10 3.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>One-time deep clean</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend><span class="n">02</span> Which rooms</legend>
+              <div class="plan-map" id="plan-map" aria-hidden="true">
+                <svg viewBox="0 0 600 420">
+                  <g class="room" data-room="kitchen"><rect x="20" y="20" width="210" height="140" rx="4"/><text x="36" y="48">Kitchen</text><text class="cnt" x="36" y="68">7 tasks</text></g>
+                  <g class="room" data-room="bath"><rect x="245" y="20" width="120" height="140" rx="4"/><text x="261" y="48">Bathrooms</text><text class="cnt" x="261" y="68">7 tasks</text></g>
+                  <g class="room" data-room="bed"><rect x="380" y="20" width="200" height="140" rx="4"/><text x="396" y="48">Bedrooms</text><text class="cnt" x="396" y="68">6 tasks</text></g>
+                  <g class="room" data-room="living"><rect x="20" y="175" width="280" height="225" rx="4"/><text x="36" y="203">Living areas</text><text class="cnt" x="36" y="223">6 tasks</text></g>
+                  <g class="room" data-room="entry"><rect x="315" y="175" width="120" height="115" rx="4"/><text x="331" y="203">Entry</text><text class="cnt" x="331" y="223">4 tasks</text></g>
+                  <g class="room" data-room="laundry"><rect x="450" y="175" width="130" height="115" rx="4"/><text x="466" y="203">Laundry</text><text class="cnt" x="466" y="223">4 tasks</text></g>
+                  <g class="room" data-room="office"><rect x="315" y="305" width="265" height="95" rx="4"/><text x="331" y="333">Home office</text><text class="cnt" x="331" y="353">4 tasks</text></g>
+                </svg>
+              </div>
+              <div class="chips" id="rooms"></div>
+            </fieldset>
+
+            <fieldset>
+              <legend><span class="n">03</span> Anything extra</legend>
+              <div class="chips" id="addons"></div>
+            </fieldset>
+          </form>
+        </div>
+
+        <aside class="out" aria-labelledby="out-t">
+          <div class="out-h">
+            <h3 id="out-t">Your plan</h3>
+            <div class="out-meta" id="out-meta"></div>
+          </div>
+          <div class="out-body" id="out-body" aria-live="polite"></div>
+          <div class="out-f">
+            <button class="btn" type="button" id="send-plan">Send this plan with my estimate <svg class="ar" width="13" height="11" viewBox="0 0 13 11" fill="none" aria-hidden="true"><path d="M1 5.5h10M7.3 1.5 11.3 5.5 7.3 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <p class="out-note">We quote per visit after a quick look at the house — by photo or a 10-minute visit. No price without seeing it.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROCESS ===================== -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">How it works</p>
+        <h2 class="h-lg">Three steps, then it runs itself.</h2>
+      </div>
+      <div class="steps rv-s">
+        <div class="step"><h3>Send the plan</h3><p>Use the builder above or just call. Tell us the house, the rooms and roughly how often you want someone there.</p></div>
+        <div class="step"><h3>We look, then quote</h3><p>A short visit or a few photos — enough to price it honestly. You get a per-visit figure and a start date, nothing hidden underneath.</p></div>
+        <div class="step"><h3>Nobody new turns up</h3><p>Whoever cleans for you works to your checklist and leaves a note of what was done and anything that needs you. Change the list whenever you like.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GALLERY =====================
+       [CONFIRM] Licensed stock standing in for her own work. The captions
+       describe what actually gets done, so they stay true either way — but
+       four photographs of real finished rooms would do far more here. -->
+  <section class="band look">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">The difference</p>
+        <h2 class="h-lg">What "done properly" looks like.</h2>
+        <p class="lede">Not staged perfection — just the ordinary rooms of a house,
+          finished rather than tidied.</p>
+      </div>
+
+      <div class="gal rv-s">
+        <figure>
+          <div class="sh"><img src="img/linen.jpg" alt="Fresh white bed linen beside a panelled door" loading="lazy" width="900" height="1200"></div>
+          <figcaption><b>Bedrooms</b>Beds made, linen changed when you leave it out, under the bed actually vacuumed.</figcaption>
+        </figure>
+        <figure>
+          <div class="sh"><img src="img/kitchen.jpg" alt="A bright white kitchen with a marble island" loading="lazy" width="900" height="1125"></div>
+          <figcaption><b>Kitchens</b>Cooktop degreased, splashback wiped, appliance and cabinet fronts, floor edges included.</figcaption>
+        </figure>
+        <figure>
+          <div class="sh"><img src="img/bathroom.jpg" alt="A marble-tiled bathroom with a glass shower" loading="lazy" width="900" height="1125"></div>
+          <figcaption><b>Bathrooms</b>Scale off the glass, grout checked in the corners, behind the door mopped too.</figcaption>
+        </figure>
+        <figure>
+          <div class="sh"><img src="img/living-soft.jpg" alt="A calm living room with soft textiles and plants" loading="lazy" width="900" height="1200"></div>
+          <figcaption><b>Living areas</b>Under the cushions, not just around them. Skirtings, switches, handles.</figcaption>
+        </figure>
+      </div>
+
+      <p class="gal-note rv"><b>These are stock photographs for now.</b> Four pictures of real
+        finished rooms — taken on a phone, in normal light, after an ordinary visit — would be
+        worth more than any of this. They are also the single easiest thing to collect.</p>
+    </div>
+  </section>
+
+  <!-- ===================== REVIEWS ===================== -->
+  <!-- [CONFIRM] These are deliberately empty frames. Paste in real Google /
+       Yelp reviews with the reviewer's first name and month. Do not publish
+       invented testimonials. -->
+  <section class="band rev">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow">Reviews</p>
+        <h2 class="h-lg">What people say, in their own words.</h2>
+      </div>
+      <div class="rev-grid rv-s">
+        <div class="rev-slot">
+          <div class="stars" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6 9.9 5.5l4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.6Z"/></svg><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6 9.9 5.5l4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.6Z"/></svg><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6 9.9 5.5l4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.6Z"/></svg><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6 9.9 5.5l4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.6Z"/></svg><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6 9.9 5.5l4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.6Z"/></svg></div>
+          <p>Your first Google review sits here.</p>
+          <small>Reviewer · Month</small>
+        </div>
+        <div class="rev-slot">
+          <div class="stars" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6 9.9 5.5l4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.6Z"/></svg><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6 9.9 5.5l4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.6Z"/></svg><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6 9.9 5.5l4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.6Z"/></svg><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6 9.9 5.5l4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.6Z"/></svg><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6 9.9 5.5l4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.6Z"/></svg></div>
+          <p>The second one here.</p>
+          <small>Reviewer · Month</small>
+        </div>
+        <div class="rev-slot">
+          <div class="stars" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6 9.9 5.5l4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.6Z"/></svg><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6 9.9 5.5l4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.6Z"/></svg><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6 9.9 5.5l4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.6Z"/></svg><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6 9.9 5.5l4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.6Z"/></svg><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6 9.9 5.5l4.3.6-3.1 3 .7 4.3L8 11.4l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.6Z"/></svg></div>
+          <p>And the third.</p>
+          <small>Reviewer · Month</small>
+        </div>
+      </div>
+      <div class="rev-note rv">
+        <p><b>These frames are empty on purpose.</b> Send your three strongest Google reviews and they drop straight in — real name, real month, linked to the listing. Nothing invented goes on this page.</p>
+        <a class="link-u" href="#contact">Send reviews <svg class="ar" width="13" height="11" viewBox="0 0 13 11" fill="none" aria-hidden="true"><path d="M1 5.5h10M7.3 1.5 11.3 5.5 7.3 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <!-- [CONFIRM] every answer below -->
+  <section class="band" id="faq">
+    <div class="wrap faq-grid">
+      <div class="sec-head rv">
+        <p class="eyebrow">Questions</p>
+        <h2 class="h-lg">Before you book.</h2>
+        <p class="lede">Anything not here, call and ask. We'd rather answer it now than on the doorstep.</p>
+      </div>
+      <div class="acc rv">
+        <details>
+          <summary>Do I need to be home?</summary>
+          <div class="a">No. Most clients give us a key, a code or a lockbox after the first visit. If you'd rather be there the first time to walk us through the house, that's the usual way to start.</div>
+        </details>
+        <details>
+          <summary>What do I need to do before you arrive?</summary>
+          <div class="a">Clear the floors and the counters of anything personal you'd rather we didn't move — that's it. We don't need the house tidied first. Clearing surfaces just means more of the visit goes on actual cleaning.</div>
+        </details>
+        <details>
+          <summary>What products do you use?</summary>
+          <div class="a">Low-scent products we bring with us, chosen so the house doesn't smell of cleaning afterwards. If you have allergies, asthma, pets or a surface that needs something specific, tell us and we'll work to it — or use yours.</div>
+        </details>
+        <details>
+          <summary>How much does it cost?</summary>
+          <div class="a">We quote per visit, after seeing the house — photos or a ten-minute look. A three-bedroom on a weekly rhythm and the same house on a one-off deep clean are different jobs, and quoting either blind usually means someone's disappointed.</div>
+        </details>
+        <details>
+          <summary>What if something isn't right?</summary>
+          <div class="a">Tell us within 48 hours and we come back and redo that part at no charge. This is a small operation — it matters that you do not have to chase it.</div>
+        </details>
+        <details>
+          <summary>Which areas do you cover?</summary>
+          <div class="a">Mostly houses and apartments within about a twenty-minute drive, plus the
+            occasional small office. If you're a little further out, ask anyway — it depends on the day
+            and what else is on the schedule. <!-- [CONFIRM] SERVICE AREA: replace with her towns and
+            neighbourhoods once confirmed. Nothing here names a place, so nothing here is wrong. --></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="band cta on-dark" id="contact">
+    <div class="wrap cta-grid">
+      <div class="cta-side rv">
+        <p class="eyebrow">Free estimate</p>
+        <h2 class="h-lg">Let's get the house off your list.</h2>
+        <p class="lede">Send the form and we'll come back within one business day with a
+          per-visit price and the next two dates we can start.</p>
+
+        <div class="cta-contact">
+          <div class="cc">
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.2 2.2 6.6 5 5.3 6.4a9 9 0 0 0 4.3 4.3L11 9.4l2.8 1.4v2.4a1 1 0 0 1-1.1 1C6.8 13.8 2.2 9.2 1.8 3.3a1 1 0 0 1 1-1.1h2.4Z" stroke="currentColor" stroke-width="1.35" stroke-linejoin="round"/></svg>
+            <div><b>Call</b><a href="tel:+15035550142">(503) 555-0142</a><button class="copy-b" type="button" data-copy="(503) 555-0142">Copy</button></div>
+          </div>
+          <div class="cc">
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.4" y="3.2" width="13.2" height="9.6" rx="1.6" stroke="currentColor" stroke-width="1.35"/><path d="m1.9 4.2 6.1 4.3 6.1-4.3" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/></svg>
+            <div><b>Email</b><a href="mailto:hello@therapeuticcleaning.co">hello@therapeuticcleaning.co</a><button class="copy-b" type="button" data-copy="hello@therapeuticcleaning.co">Copy</button></div>
+          </div>
+          <div class="cc">
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.6" stroke="currentColor" stroke-width="1.35"/><path d="M8 4.3V8l2.5 1.6" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/></svg>
+            <div><b>Office hours</b><span>Mon–Fri 8am–6pm · Sat 9am–3pm</span></div>
+          </div>
+        </div>
+      </div>
+
+      <form id="quote" novalidate aria-labelledby="qt">
+        <h3 id="qt" class="h-md f-live" style="margin-bottom:22px">Request your estimate</h3>
+
+        <div class="f-live">
+          <div class="f-sum" id="plan-sum">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8.4 6 11.9l7.5-7.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><b>Your plan is attached</b><span id="plan-sum-tx"></span></div>
+          </div>
+
+          <div class="f-row">
+            <div class="f"><label for="q-name">Name <span class="req">*</span></label><input id="q-name" name="name" type="text" autocomplete="name" required placeholder="Your name"><span class="err" data-err>Please tell us your name.</span></div>
+            <div class="f"><label for="q-phone">Phone <span class="req">*</span></label><input id="q-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(503) 000-0000"><span class="err" data-err>Enter a phone number we can reach you on.</span></div>
+          </div>
+
+          <div class="f"><label for="q-email">Email <span class="req">*</span></label><input id="q-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"><span class="err" data-err>That email doesn't look right — check for a typo.</span></div>
+
+          <div class="f-row">
+            <div class="f"><label for="q-area">Neighbourhood <span class="req">*</span></label><input id="q-area" name="area" type="text" autocomplete="address-level2" required placeholder="Your area or suburb"><span class="err" data-err>Which part of town is the house in?</span></div>
+            <div class="f">
+              <label for="q-size">Home size</label>
+              <select id="q-size" name="size">
+                <option value="Studio / 1 bed">Studio or 1 bedroom</option>
+                <option value="2 bed" selected>2 bedrooms</option>
+                <option value="3 bed">3 bedrooms</option>
+                <option value="4 bed">4 bedrooms</option>
+                <option value="5+ bed">5 bedrooms or more</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="f">
+            <label for="q-msg">Anything we should know</label>
+            <textarea id="q-msg" name="message" placeholder="Pets, allergies, a room to skip, the stairs, parking…"></textarea>
+          </div>
+
+          <div class="f-foot">
+            <button class="btn" type="submit" id="q-submit">
+              <span class="spin" aria-hidden="true"></span>
+              <span class="lbl">Send my request</span>
+              <svg class="ar" width="13" height="11" viewBox="0 0 13 11" fill="none" aria-hidden="true"><path d="M1 5.5h10M7.3 1.5 11.3 5.5 7.3 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <p class="f-fine">We reply within one business day. Your details go to us and nowhere else.</p>
+          </div>
+        </div>
+
+        <div class="f-state" id="q-done" role="status"></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="brand" href="#top" style="color:var(--on-moss)">
+          <svg width="30" height="30" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+            <circle cx="17" cy="17" r="16" stroke="currentColor" stroke-opacity=".3" stroke-width="1.2"/>
+            <path d="M17 7c5.2 2.4 7.6 6 7.6 10.1 0 4.3-3.4 7.7-7.6 7.7s-7.6-3.4-7.6-7.7C9.4 13 11.8 9.4 17 7Z" fill="var(--sage)" fill-opacity=".3"/>
+            <path d="M17 26V9.5M17 15.4c-1.9-.7-3.3-2-4.1-3.9M17 19.6c1.9-.7 3.3-2 4.1-3.9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+          <span class="brand-tx"><span class="brand-n">Therapeutic Cleaning</span><span class="brand-s" style="color:var(--on-moss-2)">House cleaning &amp; maintenance</span></span>
+        </a>
+        <p>Recurring house cleaning and home maintenance. Mostly houses, the occasional small office. No rotating roster, your checklist, no contract.</p>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Recurring maintenance</a></li>
+          <li><a href="#services">Deep clean</a></li>
+          <li><a href="#services">Move in &amp; move out</a></li>
+          <li><a href="#services">Home maintenance</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#why">Why us</a></li>
+          <li><a href="#plan">Build your plan</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="tel:+15035550142">(503) 555-0142</a></li>
+          <li><a href="mailto:hello@therapeuticcleaning.co">hello@therapeuticcleaning.co</a></li>
+          <li>Mon–Fri 8am–6pm</li>
+          <li>Sat 9am–3pm</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(34px,3.6vw,52px)">
+      <h4>Service areas</h4>
+      <!-- [CONFIRM] SERVICE AREA: drop her real towns in as <li> items here and the
+           chips come back. Left as one honest line rather than invented places. -->
+      <ul class="ft-areas">
+        <li>Houses and apartments within about twenty minutes</li>
+        <li>Small offices by arrangement</li>
+        <li>Further out? Ask — it depends on the day</li>
+      </ul>
+    </div>
+
+    <div class="ft-bot">
+      <span>© <span id="yr">2026</span> Therapeutic Cleaning Co. All rights reserved.</span>
+      <nav aria-label="Legal"><a href="#contact">Privacy</a><a href="#contact">Terms</a><a href="#faq">Service guarantee</a></nav>
+    </div>
+  </div>
+</footer>
+
+<div class="mbar" id="mbar">
+  <a class="btn btn-ghost" href="tel:+15035550142">Call</a>
+  <a class="btn" href="#contact">Free estimate</a>
+</div>
+
+<!-- [CONFIRM] Structured data: no address or geo until the real details are
+     verified. Add "address", "openingHoursSpecification" and "aggregateRating"
+     (only from a real review platform) before launch. -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"HouseCleaningService",
+  "name":"Therapeutic Cleaning Co.",
+  "description":"Recurring house cleaning and home maintenance. No rotating roster, a checklist you set, no contract.",
+  "telephone":"+1-503-555-0142",
+  "email":"hello@therapeuticcleaning.co",
+  "makesOffer":[
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Recurring maintenance clean"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"One-time deep clean"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Move in and move out clean"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Home maintenance"}}
+  ]
+}
+</script>
+
+<script>
+(function () {
+  "use strict";
+  var root = document.documentElement;
+  root.classList.add("js");
+
+  /* ---- set this to a real endpoint (Formspree / Netlify / your handler) ----
+     Left empty on purpose: until it is set the form will NOT claim a message
+     was sent. It validates, assembles the request and says so plainly.      */
+  var FORM_ENDPOINT = "";
+
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var $ = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+
+  $("#yr").textContent = new Date().getFullYear();
+
+  /* ===================== hero entrance ===================== */
+  var hero = $(".hero");
+  function lightHero() { hero.classList.add("lit"); }
+  // Arm the entrance only when it can actually run. A backgrounded tab never
+  // fires rAF, so in that case the hero stays at its visible resting state.
+  if (!reduce.matches && document.visibilityState === "visible") {
+    hero.classList.add("arm");
+    requestAnimationFrame(function () { requestAnimationFrame(lightHero); });
+    setTimeout(lightHero, 600);
+  }
+
+  /* ===================== header state ===================== */
+  var hdr = $("#hdr"), mbar = $("#mbar"), prog = $("#prog");
+  // the film band is the only parallax target now; the hero is a static
+  // comparison the visitor drives themselves.
+  var heroArt = $(".film-art .frame"), ticking = false;
+
+  function paint() {
+    ticking = false;
+    var y = window.scrollY || 0;
+    hdr.classList.toggle("stuck", y > 12);
+    mbar.classList.toggle("on", y > 520);
+
+    if (prog) {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + "%";
+    }
+    // gentler than the towing site on purpose — this brand is calm, not kinetic
+    if (heroArt && !reduce.matches && y < window.innerHeight * 1.3) {
+      heroArt.style.transform = "translate3d(0," + (y * 0.07).toFixed(1) + "px,0)";
+    }
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }
+  paint();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+
+  /* ======================================================================
+     BEFORE / AFTER — the range input is the control
+     ====================================================================== */
+  (function () {
+    var ba = $("#ba"), range = $("#ba-range");
+    if (!ba || !range) return;
+
+    function set(v) {
+      ba.style.setProperty("--x", v + "%");
+      if (+range.value !== v) range.value = v;
+    }
+    range.addEventListener("input", function () { ba.classList.remove("demo"); set(+range.value); });
+    ["pointerdown", "keydown", "touchstart"].forEach(function (ev) {
+      range.addEventListener(ev, function () { ba.classList.remove("demo"); stopDemo(); }, { passive: true });
+    });
+
+    var demoTimers = [];
+    function stopDemo() { demoTimers.forEach(clearTimeout); demoTimers = []; }
+
+    // Show once that it moves, then hand it over.
+    function runDemo() {
+      if (reduce.matches) { set(45); return; }
+      ba.classList.add("demo");
+      [[82, 500], [18, 2200], [50, 3900]].forEach(function (s) {
+        demoTimers.push(setTimeout(function () { set(s[0]); }, s[1]));
+      });
+      demoTimers.push(setTimeout(function () { ba.classList.remove("demo"); }, 5600));
+    }
+
+    set(45);
+
+    // Fire on whichever notices first. IntersectionObserver is deferred in a
+    // backgrounded tab, so a plain rect check on scroll backs it up.
+    var fired = false;
+    function fire() {
+      if (fired) return;
+      fired = true;
+      window.removeEventListener("scroll", onMaybe);
+      runDemo();
+    }
+    function onMaybe() {
+      var r = ba.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.8 && r.bottom > 0) fire();
+    }
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) fire(); });
+      }, { threshold: 0.3 }).observe(ba);
+    }
+    window.addEventListener("scroll", onMaybe, { passive: true });
+    onMaybe();
+  })();
+
+
+  /* ---------- hero video, attached only when it is wanted ---------- */
+  (function () {
+    var vid = $("#hero-vid");
+    if (!vid) return;
+    var conn = navigator.connection || {};
+    if (reduce.matches || conn.saveData) return;   // the still is the fallback
+    vid.addEventListener("canplay", function () {
+      vid.classList.add("ready");
+      var p = vid.play();
+      if (p && p.catch) p.catch(function () { vid.classList.remove("ready"); });
+    }, { once: true });
+    vid.addEventListener("error", function () { vid.classList.remove("ready"); }, { once: true });
+    vid.src = "img/hero-loop.mp4";
+    vid.load();
+  })();
+
+  /* ===================== mobile sheet ===================== */
+  var burger = $("#burger"), sheet = $("#sheet");
+  function setSheet(open) {
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    sheet.classList.toggle("open", open);
+    sheet.setAttribute("aria-hidden", String(!open));
+    document.body.style.overflow = open ? "hidden" : "";
+  }
+  burger.addEventListener("click", function () {
+    setSheet(burger.getAttribute("aria-expanded") !== "true");
+  });
+  $$("a", sheet).forEach(function (a) { a.addEventListener("click", function () { setSheet(false); }); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && burger.getAttribute("aria-expanded") === "true") { setSheet(false); burger.focus(); }
+  });
+
+  /* ===================== scroll reveal ===================== */
+  var revealed = $$(".rv, .rv-s, .rv-clip");
+  if ("IntersectionObserver" in window && !reduce.matches && document.visibilityState === "visible") {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { rootMargin: "0px 0px -9% 0px", threshold: 0.08 });
+    revealed.forEach(function (el) { io.observe(el); });
+    // safety net: nothing stays hidden, whatever happens
+    setTimeout(function () { revealed.forEach(function (el) { el.classList.add("in"); }); }, 3200);
+  } else {
+    revealed.forEach(function (el) { el.classList.add("in"); });
+  }
+
+  /* ===================== active nav link ===================== */
+  var navLinks = $$(".nav a");
+  var sections = navLinks.map(function (a) { return $(a.getAttribute("href")); }).filter(Boolean);
+  if ("IntersectionObserver" in window && sections.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        navLinks.forEach(function (a) {
+          a.setAttribute("aria-current", a.getAttribute("href") === "#" + en.target.id ? "true" : "false");
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    sections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* ===================== copy buttons ===================== */
+  $$("[data-copy]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var txt = b.getAttribute("data-copy"), done = function () {
+        var old = b.textContent; b.textContent = "Copied";
+        setTimeout(function () { b.textContent = old; }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(done, function () { select(b); });
+      } else { select(b); }
+    });
+  });
+  function select(b) {
+    var a = b.parentNode.querySelector("a, span");
+    if (!a) return;
+    var r = document.createRange(); r.selectNodeContents(a);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+
+  /* ======================================================================
+     PLAN BUILDER
+     ====================================================================== */
+  var ROOMS = [
+    { id: "kitchen", label: "Kitchen", on: true, tasks: [
+      "Counters, backsplash and splashguards wiped down",
+      "Sink scrubbed, drain cleared, tap polished",
+      "Cooktop degreased, hood face wiped",
+      "Appliance and cabinet fronts cleaned",
+      "Microwave cleaned inside and out",
+      "Bin emptied and relined",
+      "Floor vacuumed and mopped, edges included"
+    ]},
+    { id: "bath", label: "Bathrooms", on: true, tasks: [
+      "Shower, tub and screen scrubbed, scale removed",
+      "Tile and grout wiped, corners checked for mould",
+      "Toilet cleaned inside, outside and behind",
+      "Mirrors, chrome and fittings polished",
+      "Vanity, sink and cabinet fronts cleaned",
+      "Towels straightened, bin emptied",
+      "Floor mopped including behind the door"
+    ]},
+    { id: "bed", label: "Bedrooms", on: true, tasks: [
+      "Beds made, linen changed if you leave it out",
+      "Surfaces, lamps and headboards dusted",
+      "Under the bed vacuumed",
+      "Mirrors and glass cleaned",
+      "Floors vacuumed or mopped",
+      "Bins emptied"
+    ]},
+    { id: "living", label: "Living areas", on: true, tasks: [
+      "Upholstery vacuumed, under the cushions too",
+      "Surfaces, shelves and screens dusted",
+      "Skirting boards, switches and door handles wiped",
+      "Glass, frames and mirrors cleaned",
+      "Cushions and throws straightened",
+      "Floors vacuumed and mopped"
+    ]},
+    { id: "entry", label: "Entry & stairs", on: false, tasks: [
+      "Door glass, handles and frames wiped",
+      "Mats shaken out and vacuumed",
+      "Stair treads, risers and rails cleaned",
+      "Floors vacuumed and mopped"
+    ]},
+    { id: "laundry", label: "Laundry", on: false, tasks: [
+      "Machine exteriors and door seals wiped",
+      "Lint trap emptied, surrounds cleaned",
+      "Sink and surfaces scrubbed",
+      "Floor mopped"
+    ]},
+    { id: "office", label: "Home office", on: false, tasks: [
+      "Desk, shelves and surfaces dusted",
+      "Screens and keyboards lightly cleaned",
+      "Cables tidied, bin emptied",
+      "Floor vacuumed"
+    ]}
+  ];
+
+  var ADDONS = [
+    { id: "oven", label: "Inside the oven", task: "Oven cleaned inside — racks, door glass, trays" },
+    { id: "fridge", label: "Inside the fridge", task: "Fridge emptied, shelves washed, seals wiped" },
+    { id: "windows", label: "Interior windows", task: "Interior glass, sills and tracks cleaned" },
+    { id: "cabinets", label: "Inside cabinets", task: "Cabinet and pantry interiors wiped and reset" },
+    { id: "laundryfold", label: "Wash & fold", task: "One load washed, dried and folded during the visit" },
+    { id: "filters", label: "Filters", task: "HVAC and range hood filters checked and changed" },
+    { id: "patio", label: "Balcony / patio", task: "Outdoor surfaces swept, furniture wiped" }
+  ];
+
+  var FREQ = {
+    weekly:      { label: "Weekly",            note: "Full checklist every visit, plus one rotating deep task.", rotate: 1 },
+    fortnightly: { label: "Fortnightly",       note: "Full checklist every visit, plus two rotating deep tasks.", rotate: 2 },
+    monthly:     { label: "Monthly",           note: "Full checklist, with a deeper pass through kitchen and bathrooms.", rotate: 2 },
+    deep:        { label: "One-time deep clean", note: "Everything below, plus the deep list in full.", rotate: 0 }
+  };
+
+  var ROTATING = [
+    "Inside the oven", "Inside the fridge", "Interior windows and tracks",
+    "Light fittings and ceiling fans", "Skirting boards and door frames",
+    "Cupboard interiors", "Grout detail"
+  ];
+
+  var DEEP_EXTRA = [
+    "Inside the oven, racks and door glass",
+    "Inside the fridge, shelves and seals",
+    "Window interiors, sills and tracks",
+    "Skirting boards, door frames and switch plates",
+    "Light fittings, vents and ceiling fans",
+    "Grout scrubbed in kitchen and bathrooms",
+    "Cupboard and drawer interiors"
+  ];
+
+  var tick = '<svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.3 4.7 9 10 3.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var check = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.6 6.2 4.4 9 10.4 3" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function chip(name, id, label, checked, type) {
+    return '<label class="chip"><input type="' + type + '" name="' + name + '" value="' + id + '" id="c-' + id + '"' +
+      (checked ? " checked" : "") + '><span><span class="tick">' + tick + "</span>" + label + "</span></label>";
+  }
+
+  $("#rooms").innerHTML = ROOMS.map(function (r) {
+    return chip("room", r.id, r.label, r.on, "checkbox");
+  }).join("");
+  $("#addons").innerHTML = ADDONS.map(function (a) {
+    return chip("addon", a.id, a.label, false, "checkbox");
+  }).join("");
+
+  var builder = $("#builder"), outMeta = $("#out-meta"), outBody = $("#out-body");
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]; }); }
+
+  function readPlan() {
+    var freq = (builder.querySelector('input[name="freq"]:checked') || {}).value || "weekly";
+    var rooms = ROOMS.filter(function (r) { return $("#c-" + r.id).checked; });
+    var addons = ADDONS.filter(function (a) { return $("#c-" + a.id).checked; });
+    return { freq: freq, rooms: rooms, addons: addons };
+  }
+
+  function render() {
+    syncPlan();
+    var p = readPlan(), f = FREQ[p.freq];
+    var isDeep = p.freq === "deep";
+    var taskCount = p.rooms.reduce(function (n, r) { return n + r.tasks.length; }, 0) +
+                    p.addons.length + (isDeep ? DEEP_EXTRA.length : f.rotate);
+
+    outMeta.innerHTML =
+      '<span class="pill amber">' + esc(f.label) + "</span>" +
+      '<span class="pill">' + p.rooms.length + (p.rooms.length === 1 ? " room" : " rooms") + "</span>" +
+      (p.rooms.length ? '<span class="pill">' + taskCount + (isDeep ? " tasks" : " tasks a visit") + "</span>" : "");
+
+    if (!p.rooms.length) {
+      outBody.innerHTML =
+        '<div class="out-empty fade-sw">' +
+        '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.2" y="4.2" width="17.6" height="15.6" rx="2.4" stroke="currentColor" stroke-width="1.4"/><path d="M7.6 10.2h8.8M7.6 14h5.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>' +
+        "Pick at least one room and the checklist builds here.</div>";
+      return;
+    }
+
+    var html = '<div class="fade-sw">';
+    html += '<div class="out-room"><h4>Every visit <em>' + esc(f.label.toLowerCase()) + "</em></h4><ul><li>" +
+            check + "<span>" + esc(f.note) + "</span></li></ul></div>";
+
+    p.rooms.forEach(function (r) {
+      html += '<div class="out-room"><h4>' + esc(r.label) + " <em>" + r.tasks.length + "</em></h4><ul>" +
+        r.tasks.map(function (t) { return "<li>" + check + "<span>" + esc(t) + "</span></li>"; }).join("") +
+        "</ul></div>";
+    });
+
+    if (isDeep) {
+      html += '<div class="out-room"><h4>Deep list <em>' + DEEP_EXTRA.length + "</em></h4><ul>" +
+        DEEP_EXTRA.map(function (t) { return "<li>" + check + "<span>" + esc(t) + "</span></li>"; }).join("") + "</ul></div>";
+    } else if (f.rotate) {
+      html += '<div class="out-room"><h4>Rotating deep task <em>' + f.rotate + " a visit</em></h4><ul>" +
+        ROTATING.map(function (t) { return "<li>" + check + "<span>" + esc(t) + "</span></li>"; }).join("") +
+        "</ul></div>";
+    }
+
+    if (p.addons.length) {
+      html += '<div class="out-room"><h4>Extras <em>' + p.addons.length + "</em></h4><ul>" +
+        p.addons.map(function (a) { return "<li>" + check + "<span>" + esc(a.task) + "</span></li>"; }).join("") + "</ul></div>";
+    }
+
+    outBody.innerHTML = html + "</div>";
+  }
+
+  /* ---------- floor plan: the same checkboxes, drawn ---------- */
+  var planMap = $("#plan-map");
+  function syncPlan() {
+    if (!planMap) return;
+    $$("[data-room]", planMap).forEach(function (g) {
+      var box = $("#c-" + g.getAttribute("data-room"));
+      g.classList.toggle("sel", !!(box && box.checked));
+    });
+  }
+  if (planMap) {
+    planMap.addEventListener("click", function (e) {
+      var g = e.target.closest("[data-room]");
+      if (!g) return;
+      var box = $("#c-" + g.getAttribute("data-room"));
+      if (!box) return;
+      box.checked = !box.checked;
+      render();
+    });
+  }
+
+  builder.addEventListener("change", render);
+  render();
+
+  /* ---- hand the plan to the estimate form ---- */
+  var planSum = $("#plan-sum"), planSumTx = $("#plan-sum-tx"), planField = null;
+
+  function planText() {
+    var p = readPlan(), f = FREQ[p.freq];
+    return f.label + " · " + (p.rooms.map(function (r) { return r.label; }).join(", ") || "no rooms selected") +
+      (p.addons.length ? " · extras: " + p.addons.map(function (a) { return a.label; }).join(", ") : "");
+  }
+
+  $("#send-plan").addEventListener("click", function () {
+    var txt = planText();
+    planSumTx.textContent = txt;
+    planSum.classList.add("on");
+    if (!planField) {
+      planField = document.createElement("input");
+      planField.type = "hidden"; planField.name = "plan";
+      $("#quote").appendChild(planField);
+    }
+    planField.value = txt;
+    document.getElementById("contact").scrollIntoView({ behavior: reduce.matches ? "auto" : "smooth", block: "start" });
+    setTimeout(function () { $("#q-name").focus({ preventScroll: true }); }, reduce.matches ? 0 : 650);
+  });
+
+  /* ======================================================================
+     ESTIMATE FORM
+     ====================================================================== */
+  var form = $("#quote"), done = $("#q-done"), submit = $("#q-submit");
+
+  var RULES = {
+    name:  function (v) { return v.trim().length >= 2; },
+    phone: function (v) { return (v.replace(/[^\d]/g, "").length >= 7); },
+    email: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
+    area:  function (v) { return v.trim().length >= 2; }
+  };
+
+  function fieldOf(el) { return el.closest(".f"); }
+
+  function validate(el, live) {
+    var rule = RULES[el.name];
+    if (!rule) return true;
+    var ok = rule(el.value), f = fieldOf(el);
+    f.classList.toggle("bad", !ok && (live || el.value.trim() !== ""));
+    f.classList.toggle("ok", ok && el.value.trim() !== "");
+    el.setAttribute("aria-invalid", String(!ok));
+    return ok;
+  }
+
+  $$("input, select, textarea", form).forEach(function (el) {
+    if (!RULES[el.name]) return;
+    var err = fieldOf(el).querySelector("[data-err]");
+    if (err) { err.id = el.id + "-err"; el.setAttribute("aria-describedby", err.id); }
+    el.addEventListener("blur", function () { validate(el, true); });
+    el.addEventListener("input", function () {
+      if (fieldOf(el).classList.contains("bad")) validate(el, true);
+    });
+  });
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var fields = $$("input, select, textarea", form).filter(function (el) { return RULES[el.name]; });
+    var firstBad = null;
+    fields.forEach(function (el) { if (!validate(el, true) && !firstBad) firstBad = el; });
+    if (firstBad) { firstBad.focus(); return; }
+
+    var data = {};
+    new FormData(form).forEach(function (v, k) { data[k] = v; });
+
+    submit.setAttribute("aria-busy", "true");
+
+    if (FORM_ENDPOINT) {
+      fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data)
+      }).then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        finish(true, data);
+      }).catch(function () {
+        finish(false, data);
+      });
+    } else {
+      // No endpoint configured. Say so — do not pretend it was sent.
+      setTimeout(function () { finish(null, data); }, 420);
+    }
+  });
+
+  function summary(d) {
+    return [
+      "Name:  " + (d.name || ""),
+      "Phone: " + (d.phone || ""),
+      "Email: " + (d.email || ""),
+      "Area:  " + (d.area || ""),
+      "Size:  " + (d.size || ""),
+      d.plan ? "Plan:  " + d.plan : null,
+      d.message ? "Notes: " + d.message : null
+    ].filter(Boolean).join("\n");
+  }
+
+  function finish(ok, d) {
+    submit.removeAttribute("aria-busy");
+    form.classList.add("sent");
+    done.classList.add("on");
+
+    var head, body, extra = "";
+    if (ok === true) {
+      head = "Request sent";
+      body = "Thanks " + esc((d.name || "").split(" ")[0]) + " — we'll come back within one business day with a per-visit price and the next two dates we can start.";
+    } else if (ok === false) {
+      head = "That didn't go through";
+      body = "Something went wrong on the way. Call <strong>(503) 555-0142</strong> or copy the details below into an email to <strong>hello@therapeuticcleaning.co</strong> and we'll pick it up.";
+      extra = "<pre>" + esc(summary(d)) + "</pre>";
+    } else {
+      head = "Not connected yet";
+      body = "This form isn't wired to an inbox on this version of the site, so nothing has been sent. Call <strong>(503) 555-0142</strong>, or copy your request below and email it to <strong>hello@therapeuticcleaning.co</strong>.";
+      extra = "<pre>" + esc(summary(d)) + "</pre>";
+    }
+
+    done.innerHTML =
+      "<h3>" + (ok === true
+        ? '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10.4" stroke="currentColor" stroke-width="1.5"/><path d="M7.4 12.3 10.6 15.5 16.8 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        : '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10.4" stroke="currentColor" stroke-width="1.5"/><path d="M12 7.2v6M12 16.4v.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>') +
+        esc(head) + "</h3>" +
+      "<p>" + body + "</p>" + extra +
+      (ok === true ? "" :
+        '<div class="row">' +
+          '<button class="btn btn-ghost btn-sm" type="button" id="q-copy">Copy my details</button>' +
+          '<a class="btn btn-sm" href="tel:+15035550142">Call (503) 555-0142</a>' +
+        "</div>");
+
+    done.scrollIntoView({ behavior: reduce.matches ? "auto" : "smooth", block: "center" });
+
+    var copy = $("#q-copy");
+    if (copy) {
+      copy.addEventListener("click", function () {
+        var t = summary(d), mark = function () {
+          copy.textContent = "Copied"; setTimeout(function () { copy.textContent = "Copy my details"; }, 1700);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(t).then(mark, selectPre);
+        } else { selectPre(); }
+      });
+    }
+    function selectPre() {
+      var pre = done.querySelector("pre");
+      if (!pre) return;
+      var r = document.createRange(); r.selectNodeContents(pre);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    }
+  }
+})();
+</script>
+</body>
+</html>

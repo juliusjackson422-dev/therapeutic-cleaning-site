@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /
+
+# Pre-launch: placeholder business data and a fictional phone number.
+# When the real details are in, replace with:
+#   User-agent: *
+#   Allow: /
+#   Disallow: /review.html
+#   Sitemap: https://YOURDOMAIN/sitemap.xml
