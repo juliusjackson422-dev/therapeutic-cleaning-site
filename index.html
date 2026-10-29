@@ -640,15 +640,24 @@ html{scroll-behavior:smooth;scroll-padding-top:calc(96px + env(safe-area-inset-t
 
 /* =================== BEFORE / AFTER ===================
    A real draggable comparison. The range input IS the control, so it is
-   keyboard-accessible and works on touch without any custom gesture code.
+   keyboard-accessible. Touch and mouse dragging is handled explicitly in JS;
+   a bare range input only supports tap-to-jump unless you hit the thumb.
    It demonstrates itself once on first view — nobody discovers a slider
    they weren't told about. */
 .ba-sec{background:var(--paper-2)}
 .ba{
   position:relative;margin:40px 0 0;border-radius:var(--r);overflow:hidden;
-  aspect-ratio:1024/688;background:var(--paper);box-shadow:var(--shadow-md);--x:45%
+  aspect-ratio:1024/688;background:var(--paper);box-shadow:var(--shadow-md);--x:45%;
+  cursor:ew-resize;-webkit-user-select:none;user-select:none;
+  /* Claims horizontal gestures for the handle while leaving vertical ones to
+     the page. Without this a sideways drag on a phone is read as a scroll and
+     the handle never moves. */
+  touch-action:pan-y
 }
-.ba-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ba-img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  pointer-events:none;-webkit-user-drag:none
+}
 .ba-after{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--x)) 0 0)}
 .ba-line{
   position:absolute;top:0;bottom:0;left:var(--x);width:2px;margin-left:-1px;
@@ -661,9 +670,12 @@ html{scroll-behavior:smooth;scroll-padding-top:calc(96px + env(safe-area-inset-t
 }
 .ba-range{
   position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;
-  cursor:ew-resize;appearance:none;background:none
+  appearance:none;background:none;
+  /* Keyboard and screen-reader control only; pointers are handled on .ba. A
+     native range thumb can only be DRAGGED when the finger lands on the thumb
+     itself, so on a phone this input alone gave tap-to-jump and nothing else. */
+  pointer-events:none
 }
-.ba-range::-webkit-slider-thumb{appearance:none;width:44px;height:100%}
 .ba:focus-within .ba-grip{box-shadow:0 0 0 3px var(--amber),0 2px 10px rgba(20,32,27,.28)}
 .ba-tag{
   position:absolute;top:14px;z-index:2;font-size:.68rem;font-weight:700;letter-spacing:.14em;
@@ -775,7 +787,6 @@ html{scroll-behavior:smooth;scroll-padding-top:calc(96px + env(safe-area-inset-t
 </style>
 </head>
 <body>
-
 <!-- ===================== HEADER ===================== -->
 <a href="#main" class="sr">Skip to content</a>
 <div class="prog" id="prog" aria-hidden="true"></div>
@@ -853,7 +864,7 @@ html{scroll-behavior:smooth;scroll-padding-top:calc(96px + env(safe-area-inset-t
         </div>
         <span class="ba-tag l">After</span>
         <span class="ba-tag r">Before</span>
-        <input class="ba-range" id="ba-range" type="range" min="0" max="100" value="45" aria-label="Drag to reveal the cleaned room">
+        <input class="ba-range" id="ba-range" type="range" min="0" max="100" value="45" aria-label="Reveal the cleaned room">
         <div class="ba-line" aria-hidden="true">
           <span class="ba-grip">
             <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M8 5 3.5 10 8 15M12 5l4.5 5-4.5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1452,13 +1463,51 @@ html{scroll-behavior:smooth;scroll-padding-top:calc(96px + env(safe-area-inset-t
     if (!ba || !range) return;
 
     function set(v) {
+      v = Math.max(0, Math.min(100, v));
       ba.style.setProperty("--x", v + "%");
       if (+range.value !== v) range.value = v;
     }
-    range.addEventListener("input", function () { ba.classList.remove("demo"); set(+range.value); });
-    ["pointerdown", "keydown", "touchstart"].forEach(function (ev) {
-      range.addEventListener(ev, function () { ba.classList.remove("demo"); stopDemo(); }, { passive: true });
+    function stop() { ba.classList.remove("demo"); stopDemo(); }
+
+    /* Dragging is handled here rather than left to the range input. A native
+       range only drags when the pointer goes down ON its thumb — everywhere
+       else is tap-to-jump — and the thumb here is invisible and 44px wide, so
+       on a phone the control read as tap-only. Pointer events on the whole
+       figure make any press-and-slide work, from anywhere on the image. */
+    var dragging = false;
+    function pct(e) {
+      var r = ba.getBoundingClientRect();
+      return r.width ? ((e.clientX - r.left) / r.width) * 100 : null;
+    }
+    ba.addEventListener("pointerdown", function (e) {
+      if (e.button || e.isPrimary === false) return;
+      var v = pct(e);
+      if (v === null) return;
+      dragging = true;
+      stop();
+      try { ba.setPointerCapture(e.pointerId); } catch (err) {}
+      set(v);
+      /* Mouse only: stops the drag selecting the two images. Touch is left
+         alone so a vertical swipe can still scroll the page away. */
+      if (e.pointerType === "mouse") e.preventDefault();
     });
+    ba.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      var v = pct(e);
+      if (v !== null) set(v);
+    });
+    function release(e) {
+      if (!dragging) return;
+      dragging = false;
+      try { ba.releasePointerCapture(e.pointerId); } catch (err) {}
+    }
+    /* pointercancel fires when the browser takes the gesture back for a scroll. */
+    ["pointerup", "pointercancel"].forEach(function (ev) { ba.addEventListener(ev, release); });
+    ba.addEventListener("lostpointercapture", function () { dragging = false; });
+
+    /* Keyboard: arrow keys on the focusable, invisible range input. */
+    range.addEventListener("input", function () { stop(); set(+range.value); });
+    range.addEventListener("keydown", stop);
 
     var demoTimers = [];
     function stopDemo() { demoTimers.forEach(clearTimeout); demoTimers = []; }
