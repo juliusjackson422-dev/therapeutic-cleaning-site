@@ -567,6 +567,16 @@ form.sent .f-live{display:none}
   .ft ul{gap:2px}
   .ft li a,.ft-bot nav a{min-height:44px}
 }
+
+/* The phone and email in the contact block sit on one line beside a Copy
+   button, where growing them would move the row. They get a transparent
+   overlay instead: the hit area grows, nothing shifts. It spans only the
+   link's own width, so it cannot cover the Copy button next to it. */
+.cc a{position:relative}
+.cc a::after{
+  content:"";position:absolute;left:0;right:0;top:50%;
+  transform:translateY(-50%);height:44px
+}
 .ft-brand{display:flex;flex-direction:column;gap:16px;min-width:0}
 .ft-brand p{font-size:.92rem;color:var(--on-moss-2);max-width:40ch}
 .ft-areas{display:flex;flex-wrap:wrap;gap:7px}
