@@ -555,6 +555,18 @@ form.sent .f-live{display:none}
 .ft li{list-style:none;font-size:.92rem;color:var(--on-moss-2)}
 .ft a{text-decoration:none;color:var(--on-moss-2);transition:color .22s}
 .ft a:hover{color:var(--amber)}
+
+/* ---------- Tap targets -------------------------------------------------
+   WCAG 2.5.8 asks for an interactive target of at least 24x24 CSS px; the
+   footer links measured 19px tall. 44px is the iOS figure rather than the
+   web one, so it is applied only where a finger is actually in use.
+   ------------------------------------------------------------------- */
+.ft li a,.ft-bot nav a{display:inline-flex;align-items:center;min-height:24px}
+@media (pointer:coarse){
+  /* Tighter gap so the taller links do not stretch the footer as much. */
+  .ft ul{gap:2px}
+  .ft li a,.ft-bot nav a{min-height:44px}
+}
 .ft-brand{display:flex;flex-direction:column;gap:16px;min-width:0}
 .ft-brand p{font-size:.92rem;color:var(--on-moss-2);max-width:40ch}
 .ft-areas{display:flex;flex-wrap:wrap;gap:7px}
@@ -767,7 +779,7 @@ html{scroll-behavior:smooth;scroll-padding-top:calc(96px + env(safe-area-inset-t
   .mbar{display:flex}
   body{padding-bottom:78px}
   .hdr-cta .tel span{display:none}
-  .hdr-cta .tel{width:42px;height:42px;justify-content:center;border:1.5px solid var(--line);border-radius:999px}
+  .hdr-cta .tel{width:44px;height:44px;justify-content:center;border:1.5px solid var(--line);border-radius:999px}
   /* The brand block is 257px and was flex:none, so brand + tel + burger came
      to 419px in a 375px viewport and pushed the header 24px off-screen. */
   .brand{min-width:0;flex:0 1 auto}
